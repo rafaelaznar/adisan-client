@@ -1,0 +1,265 @@
+<!--
+/*
+ * Copyright (c) 2017-2018 
+ *
+ * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
+ * 
+ * ADISAN: Free Open Source Health Management System
+ *
+ *
+ * Sources at:                https://github.com/rafaelaznar/adisan
+ *                            
+ * Database at:               https://github.com/rafaelaznar/adisan-database
+ *
+ * ADISAN is distributed under the MIT License (MIT)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+-->
+<menu></menu>
+<div id="wrapper" ng-cloak>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <header ob="ob" op="op"></header>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row" ng-if="breadcrumbs">
+                            <div class="col-xs-12">
+                                <div class="alert alert-info" role="alert">
+                                    <p ng-bind-html="breadcrumbs | trusted"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form name="outerForm" class="form-horizontal text-left"  ng-if="!status">
+                            <div ng-repeat="oMetap in metap">
+                                <!--- id ---------------------------------------------->
+                                <div ng-if="oMetap.Type == 'Id'" class="form-group" id="{{oMetap.Name}}-group">
+                                    <label class="control-label col-sm-2" for="{{oMetap.Name}}">
+                                        <span ng-if="oMetap.IsRequired">*</span>
+                                        {{oMetap.LongName}}
+                                    </label>
+                                    <div class="control col-md-{{oMetap.Width}}">
+                                        <input type="text"
+                                               class="form-control"
+                                               id="{{oMetap.Name}}"
+                                               name="{{oMetap.Name}}"
+                                               ng-model="bean[oMetap.Name]"
+                                               placeholder="{{oMetap.Description}}"
+                                               size="15"
+                                               disabled />
+                                    </div>
+                                    <div class="control col-md-1 alert alert-success" ng-if="debugging == 2">
+                                        pristine:{{outerForm[oMetap.Name].$pristine}}<br>
+                                        required:{{outerForm[oMetap.Name].$error.required}}<br>
+                                        valid:{{outerForm[oMetap.Name].$valid}}<br>
+                                    </div>
+                                </div>
+                                <!-- string ------------------------------------------------>
+                                <div ng-if="oMetap.Type == 'String' || oMetap.Type == 'Integer' || oMetap.Type == 'Decimal'" class="form-group" id="{{oMetap.Name}}-group"
+                                     ng-class="{'has-error':(outerForm[oMetap.Name].$error.pattern && !outerForm.$pristine) ||
+                                                             (outerForm[oMetap.Name].$error.required && !outerForm.$pristine)}">
+                                    <label class="control-label col-sm-2" for="{{oMetap.Name}}">
+                                        <span ng-if="oMetap.IsRequired">*</span>
+                                        {{oMetap.LongName}}
+                                    </label>
+                                    <div class="control col-md-{{oMetap.Width}}">
+                                        <input type="text"
+                                               class="form-control"
+                                               id="{{oMetap.Name}}"
+                                               name="{{oMetap.Name}}"
+                                               ng-model="bean[oMetap.Name]"
+                                               ng-pattern="oMetap.RegexPattern"
+                                               placeholder="{{oMetap.Description}}"
+                                               maxlength="{{oMetap.MaxLength}}"
+                                               ng-required="oMetap.IsRequired" />
+                                        <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.required">El campo es obligatorio</span>
+                                        <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.pattern">El campo no tiene formato adecuado: Introduzca {{oMetap.RegexHelp}}</span>
+                                    </div>
+                                    <div class="control col-md-1 alert alert-success" ng-if="debugging == 2">
+                                        pristine:{{outerForm[oMetap.Name].$pristine}}<br>
+                                        required:{{outerForm[oMetap.Name].$error.required}}<br>
+                                        valid:{{outerForm[oMetap.Name].$valid}}<br>
+                                    </div>
+                                </div>
+                                <!-- longtext ------------------------------------------------>
+                                <div ng-if="oMetap.Type == 'LongText'" class="form-group" id="{{oMetap.Name}}-group"
+                                     ng-class="{'has-error':(outerForm[oMetap.Name].$error.pattern && !outerForm.$pristine) ||
+                                                             (outerForm[oMetap.Name].$error.required && !outerForm.$pristine)}">
+                                    <label class="control-label col-sm-2" for="{{oMetap.Name}}">
+                                        <span ng-if="oMetap.IsRequired">*</span>
+                                        {{oMetap.LongName}}
+                                    </label>
+                                    <div class="control col-md-10 col-md-offset-2">
+                                        <textarea
+                                            style="width: 100%"
+                                            rows="8"
+                                            class="form-control rounded-0"
+                                            id="{{oMetap.Name}}"
+                                            name="{{oMetap.Name}}"
+                                            ng-model="bean[oMetap.Name]"
+                                            ng-pattern="oMetap.RegexPattern"
+                                            placeholder="{{oMetap.Description}}"
+                                            ng-required="oMetap.IsRequired"></textarea>
+                                        <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.required">El campo es obligatorio</span>
+                                        <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.pattern">El campo no tiene formato adecuado: Introduzca {{oMetap.RegexHelp}}</span>
+                                    </div>
+                                    <div class="control col-md-1 alert alert-success" ng-if="debugging == 2">
+                                        pristine:{{outerForm[oMetap.Name].$pristine}}<br>
+                                        required:{{outerForm[oMetap.Name].$error.required}}<br>
+                                        valid:{{outerForm[oMetap.Name].$valid}}<br>
+                                    </div>
+                                </div>
+                                <!-- date ------------------------------------------------>
+                                <div ng-if="oMetap.Type == 'Date'" class="form-group" id="{{oMetap.Name}}-group"
+                                     ng-class="{'has-error':(outerForm[oMetap.Name].$error.valid && !outerForm.$pristine) ||
+                                                              (outerForm[oMetap.Name].$error.required && !outerForm.$pristine) ||
+                                                              outerForm[oMetap.Name].$error.valid}">
+                                    <label class="control-label col-sm-2" for="{{oMetap.Name}}">
+                                        <span ng-if="oMetap.IsRequired">*</span>
+                                        {{oMetap.LongName}}
+                                    </label>
+                                    <div class="control col-md-{{oMetap.Width}}">
+                                        <date-picker
+                                            name="oMetap.Name"
+                                            required="oMetap.IsRequired"
+                                            model="bean[oMetap.Name]"
+                                            form="outerForm">
+                                        </date-picker>
+                                        <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.required">El campo es obligatorio</span>
+                                        <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.required && !outerForm[oMetap.Name].$valid">El campo no tiene formato adecuado: Introduzca {{oMetap.RegexHelp}}</span>
+                                    </div>
+                                    <div class="control col-md-1 alert alert-success" ng-if="debugging == 2">
+                                        pristine:{{outerForm[oMetap.Name].$pristine}}<br>
+                                        required:{{outerForm[oMetap.Name].$error.required}}<br>
+                                        valid:{{outerForm[oMetap.Name].$valid}}<br>
+                                    </div>
+                                </div>
+
+                                <!-- boolean ------------------------------------------------>
+                                <div ng-if="oMetap.Type == 'Boolean'" class="form-group" id="{{oMetap.Name}}-group"
+                                     ng-class="{'has-error': (outerForm[oMetap.Name].$error.required || outerForm[oMetap.Name].$error.valid) && !outerForm.$pristine}">
+                                    <label class="control-label col-sm-2" for="{{oMetap.Name}}">
+                                        <span ng-if="oMetap.IsRequired">*</span>
+                                        {{oMetap.LongName}}
+                                    </label>
+                                    <div class="control col-md-{{oMetap.Width}}">
+                                        <input
+                                            ng-model="bean[oMetap.Name]"
+                                            type="checkbox"
+                                            ng-true-value="1"
+                                            ng-false-value="0"
+                                            id="{{oMetap.Name}}"
+                                            name="{{oMetap.Name}}">
+                                    </div>
+                                    <div class="control col-md-1 alert alert-success" ng-if="debugging == 2">
+                                        pristine:{{outerForm[oMetap.Name].$pristine}}<br>
+                                        required:{{outerForm[oMetap.Name].$error.required}}<br>
+                                        valid:{{outerForm[oMetap.Name].$valid}}<br>
+                                    </div>
+                                </div>
+
+                                <!-- foreign  ----------------------------------------------->
+                                <div ng-if="oMetap.Type == 'ForeignObject'"
+                                     ng-show="(oMetap.References != xob && oMetap.IsFormVisible) || (profile == 1 && oMetap.IsFormVisible == false && oMetap.References != xob)"
+                                     class="form-group" id="{{oMetap.Name}}-group"
+                                     ng-class="{'has-error': (outerForm[oMetap.Name].$error.exists || outerForm[oMetap.Name].$error.required) && !outerForm.$pristine}">
+                                    <label class="control-label col-sm-2" for="{{oMetap.Name}}">
+                                        <span ng-if="oMetap.IsRequired">*</span>
+                                        {{oMetap.LongName}}
+                                    </label>
+                                    <div class="control col-md-{{oMetap.Width}}">
+                                        <foreign-key
+                                            bean="bean[oMetap.Name].data"
+                                            form="outerForm"
+                                            name="oMetap.Name"
+                                            reference="oMetap.References"
+                                            profile="profile"
+                                            required="oMetap.IsRequired">
+                                        </foreign-key>
+                                        <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.required">El campo es obligatorio</span>
+                                        <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.exists && !outerForm[oMetap.Name].$error.required">La clave elegida no existe</span>
+                                    </div>
+                                    <div class="control col-md-1 alert alert-success" ng-if="debugging == 2">
+                                        pristine:{{outerForm[oMetap.Name].$pristine}}<br>
+                                        required:{{outerForm[oMetap.Name].$error.required}}<br>
+                                        exists:{{outerForm[oMetap.Name].$error.exists}}<br>
+                                        valid:{{outerForm[oMetap.Name].$valid}}<br>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!--   ----------------------------------------------->
+                            <div class="control-group text-right">
+                                <div class="controls">
+                                    <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$dirty || !outerForm.$valid">Guardar</a>
+                                    <a class="btn btn-info" ng-href="{{ob}}/{{profile}}/plist">Ir al listado de {{ob}}</a>
+                                    <a class="btn btn-default" ng-click="back()">Volver</a>
+                                    <a class="btn btn-default" ng-click="close()">Cerrar</a>
+                                </div>
+                            </div>
+                            <div class="alert alert-success" role="alert" ng-if="debugging == 2">
+                                <h4>Debug:</h4>
+                                FORM DIRTY:{{outerForm.$dirty}}<br>
+                                FORM VALID:{{outerForm.$valid}}<br>
+                                FORM PRISTINE: {{outerForm.$pristine}}<br>
+                                FORM : {{outerForm.$error|json}}<br>
+                            </div>
+                            <!------------------------------------------------->
+                        </form>
+                        <div ng-if="status">
+                            <div class="alert alert-success" ng-if="response.status == 200">
+                                <h2>{{status}}</h2>
+                                <div class="control-group text-right">
+                                    <div class="controls">
+                                        <a class="btn btn-success" ng-href="{{ob}}/{{profile}}/view/{{bean.id}}">Ver registro</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="alert alert-danger" ng-if="response.status != 200">
+                                <div class="control-group text-right">
+                                    <div class="controls">
+                                        <h2>{{status}}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group text-right">
+                                <div class="controls">
+                                    <a ng-if="!linkedbean" class="btn btn-info" href="{{ob}}/{{profile}}/plist">Ir al listado</a>
+                                    <a ng-if="linkedbean"  class="btn btn-info"  href="{{ob}}/{{profile}}/{{xob}}/plist/{{linkedbean.data.id}}"> <span class="{{linkedbean.metaObject.Icon}}"></span> Ir al listado</a>
+                                    <a class="btn btn-default" ng-click="back()">Volver</a>
+                                    <a class="btn btn-default" href="home">Cerrar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="alert alert-success" role="alert" ng-if="debugging == 2">
+                            <h4>Debug:</h4>
+                            BEAN:{{bean|json}}<br>
+                        </div>
+                    </div>
+                    <div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/include/footer.html'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

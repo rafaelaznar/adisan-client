@@ -1,0 +1,41 @@
+<form
+    class="form-inline navbar-form navbar-right"
+    role="form"
+    id="filterForm"
+    name="filterForm">   
+    <div class="form-group" 
+         ng-class="{'has-error': (filterForm.filterOperator.$error.required ||
+                     filterForm.filterOperator.$error.valid)}">
+        <div class="form-group"><button class="btn">Filtrando por {{filterbyboolean.field.LongName}}</button></div>     
+        <select
+            id="filterOperator"
+            ng-required="true"
+            class="form-control"
+            name="filterOperator"
+            width="80"
+            style="width: 200px"
+            ng-model="filterbyboolean.operator">
+            <option style="display:none">selecciona una operacion</option>
+            <option value="bequa"  ng-selected="true">es igual a</option>
+        </select>
+        <span class="help-block" ng-if="!filterForm.filterOperator.$pristine && filterForm.filterOperator.$error.required">El campo es obligatorio</span>
+    </div>
+    <div class="form-group" 
+         ng-class="{'has-error': (filterForm.filterValue.$error.required ||
+                     filterForm.filterValue.$error.valid)}">
+        <select 
+            id="filterValue" 
+            ng-required="true"
+            class="form-control" 
+            name="filterValue" 
+            width="80" 
+            style="width: 200px" 
+            ng-model="filterbyboolean.value">
+            <option style="display:none">selecciona una operacion</option>
+            <option value="1"  ng-selected="true">Verdadero</option>
+            <option value="0">Falso</option>
+        </select>
+        <span class="help-block" ng-if="!filterForm.filterValue.$pristine && filterForm.filterValue.$error.required">El campo es obligatorio</span>
+    </div>
+    <input type="button" ng-disabled="!filterForm.$valid" class="btn" id="btnFiltrar" name="btnFiltrar" value="Filtrar" ng-click="filterbyboolean.dofilter()" />
+</form>
