@@ -20,7 +20,7 @@ function datepicker() {
     var checkValidity = function () {
         if (self.model) {
             var fechaCompleta = moment(self.model, "DD/MM/YYYY");
-            var dayA = moment("01/01/1970", "DD/MM/YYYY");
+            var dayA = moment("01/01/1900", "DD/MM/YYYY");
             var dayB = moment("31/12/2099", "DD/MM/YYYY");
             var fechaHora = moment(self.model, "DD/MM/YYYY", true).isValid();
             if ((fechaCompleta <= dayA || fechaCompleta >= dayB) || !fechaHora) {
