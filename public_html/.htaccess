@@ -4,5 +4,5 @@ Options FollowSymLinks
   RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f [OR]
   RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -d
   RewriteRule ^ - [L]
-  RewriteRule ^ /casafacil-client/public_html/index.html
+  RewriteRule ^ /adisan-client/public_html/index.html
 
