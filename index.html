@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" ng-app="myApp">
+<!--
+     /*
+     * Copyright (c) 2016-2017-2018-2019
+     *
+     * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
+     *
+     * ADISAN: Free Open Source Health Management System
+     *
+     *
+     * Sources at:                https://github.com/rafaelaznar/adisan
+     *                            
+     * Database at:               https://github.com/rafaelaznar/adisan-database
+     *
+     * ADISAN is distributed under the MIT License (MIT)
+     *
+     * Permission is hereby granted, free of charge, to any person obtaining a copy
+     * of this software and associated documentation files (the "Software"), to deal
+     * in the Software without restriction, including without limitation the rights
+     * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+     * copies of the Software, and to permit persons to whom the Software is
+     * furnished to do so, subject to the following conditions:
+     *
+     * The above copyright notice and this permission notice shall be included in
+     * all copies or substantial portions of the Software.
+     *
+     * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+     * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+     * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+     * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+     * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+     * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+     * THE SOFTWARE.
+     */
+    -->
+
+<head>
+    <meta charset="utf-8">
+    <meta content="All" lang="en" name="robots" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Rafael Aznar & students 2016-2017-2018-2019">
+    <title>ADISAN</title>
+    <base href="/adisan-client/index.html" />
+    <!-- <base href="/index.html" /> -->
+    <!-- PRODUCTION MODE -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/fontawesome-free-5.13.0-web/css/all.css" rel="stylesheet" type="text/css">
+    <link href="fonts/fonts.css" rel="stylesheet" type="text/css">
+    <link href="vendor/jqueryui/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <link href="vendor/jqueryuitimepicker/jquery-ui-timepicker-addon.min.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+</head>
+
+<body style="font-family: Questrial, serif;">
+
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div ng-cloak ng-view></div>
+
+    <!-- VENDOR ------------------------------- -->
+    <script src="vendor/jquery/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- <script src='https://www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit' async defer></script>        -->
+    <!-- ------------------------------- -->
+    <script src="vendor/jqueryui/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="vendor/jqueryui/locale-es.js" type="text/javascript"></script>
+    <!-- ------------------------------- -->
+    <script src="vendor/jqueryuitimepicker/jquery-ui-timepicker-addon.min.js" type="text/javascript"></script>
+    <script src="vendor/jqueryuitimepicker/jquery-ui-timepicker-addon-i18n.min.js" type="text/javascript"></script>
+    <script src="vendor/jqueryuitimepicker/jquery-ui-sliderAccess.js" type="text/javascript"></script>
+    <!-- ------------------------------- -->
+    <script src="vendor/angular/angular.min.js" type="text/javascript"></script>
+    <script src="vendor/angular/angular-sanitize.min.js" type="text/javascript"></script>
+    <script src="vendor/angular/angular-route.min.js" type="text/javascript"></script>
+    <!-- ------------------------------- -->
+    <script src="vendor/UIBootstrap/ui-bootstrap-tpls-2.5.0.min.js" type="text/javascript"></script>
+    <!-- ------------------------------- -->
+    <script src="vendor/moment/moment-with-locales.min.js" type="text/javascript"></script>
+    <script src="vendor/angular/angular-locale_es-es.js" type="text/javascript"></script>
+    <!-- ------------------------------- -->
+    <script src="vendor/sha/forge-sha256.min.js" type="text/javascript"></script>
+    <!-- -------------------------------
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script>
+        -->
+    <script src="vendor/chart/Chart.min.js" type="text/javascript"></script>
+    <script src="vendor/angular-chart/dist/angular-chart.min.js"></script>
+    <!-- ------------------------------- -->
+    <script src="vendor/pdf/jspdf.min.js" type="text/javascript"></script>
+
+    <!-- APP ------------------------------- -->
+    <script src="config/app.js" type="text/javascript"></script>
+    <script src="config/config.js" type="text/javascript"></script>
+    <script src="config/routes.js" type="text/javascript"></script>
+    <script src="config/run.js" type="text/javascript"></script>
+
+    <!-- SERVICES ------------------------------- -->
+    <script src="service/constant.js" type="text/javascript"></script>
+    <script src="service/regex.js" type="text/javascript"></script>
+    <script src="service/serverCall.js" type="text/javascript"></script>
+    <script src="service/session.js" type="text/javascript"></script>
+    <script src="service/sessionServerCall.js" type="text/javascript"></script>
+    <script src="service/sharedSpace.js" type="text/javascript"></script>
+    <script src="service/tool.js" type="text/javascript"></script>
+
+    <!-- FILTERS ------------------------------- -->
+    <script src="filter/filters.js" type="text/javascript"></script>
+
+    <!-- DIRECTIVES ------------------------------- -->
+    <script src="directive/directives.js" type="text/javascript"></script>
+
+    <!-- COMPONENTS ------------------------------- -->
+    <script src="component/plist/cplistinfo.js" type="text/javascript"></script>
+    <script src="component/plist/cplistpagination.js" type="text/javascript"></script>
+    <script src="component/plist/cplistrpp.js" type="text/javascript"></script>
+    <script src="component/plist/cplistvisiblefields.js" type="text/javascript"></script>
+    <script src="component/plist/plistheader.js" type="text/javascript"></script>
+    <script src="component/plist/plistvisiblefields.js" type="text/javascript"></script>
+    <!-- ------------------------------- -->
+    <script src="component/plist/cplistfilterbyinteger.js" type="text/javascript"></script>
+    <script src="component/plist/cplistfilterbystring.js" type="text/javascript"></script>
+    <script src="component/plist/cplistfilterbyboolean.js" type="text/javascript"></script>
+    <script src="component/plist/cplistfilterbydate.js" type="text/javascript"></script>
+    <script src="component/plist/cplistfilterbyforeign.js" type="text/javascript"></script>
+    <!-- ------------------------------- -->
+    <script src="component/plistspa/plistinfospa.js" type="text/javascript"></script>
+    <script src="component/plistspa/plistpaginationspa.js" type="text/javascript"></script>
+    <script src="component/plistspa/plistrppspa.js" type="text/javascript"></script>
+    <script src="component/plistspa/plistvisiblefieldsspa.js" type="text/javascript"></script>
+    <script src="component/plistspa/plistheaderspa.js" type="text/javascript"></script>
+    <script src="component/plistspa/plistoperationbarspa.js" type="text/javascript"></script>
+    <!-- ------------------------------- -->
+    <script src="component/plistspa/cplistfilterbyintegerspa.js" type="text/javascript"></script>
+    <script src="component/plistspa/cplistfilterbystringspa.js" type="text/javascript"></script>
+    <script src="component/plistspa/cplistfilterbybooleanspa.js" type="text/javascript"></script>
+    <script src="component/plistspa/cplistfilterbydatespa.js" type="text/javascript"></script>
+    <script src="component/plistspa/cplistfilterbyforeignspa.js" type="text/javascript"></script>
+    <!-- ------------------------------ -->
+    <script src="component/menu/menu.js" type="text/javascript"></script>
+    <script src="component/header/header.js" type="text/javascript"></script>
+    <!-- ------------------------------- -->
+    <script src="component/datepicker/datepicker.js" type="text/javascript"></script>
+    <script src="component/timepicker/timepicker.js" type="text/javascript"></script>
+    <script src="component/dropdown/dropdown.js" type="text/javascript"></script>
+    <script src="component/foreignkey/foreignkey.js" type="text/javascript"></script>
+    <script src="component/radiogroup/radiogroup.js" type="text/javascript"></script>
+
+    <!-- SHARED ------------------------------- -->
+    <script src="shared/home.js" type="text/javascript"></script>
+    <script src="shared/login.js" type="text/javascript"></script>
+    <script src="shared/logout.js" type="text/javascript"></script>
+    <script src="shared/passchange.js" type="text/javascript"></script>
+    <script src="shared/profile.js" type="text/javascript"></script>
+    <script src="shared/newalumno.js" type="text/javascript"></script>
+
+    <!-- SELECTION ------------------------------- -->
+    <script src="generic/controller/selection.js" type="text/javascript"></script>
+
+    <!-- GENERIC ------------------------------- -->
+    <!-- -- -->
+    <script src="generic/controller/1/plist.js" type="text/javascript"></script>
+    <script src="generic/controller/1/view.js" type="text/javascript"></script>
+    <script src="generic/controller/1/new.js" type="text/javascript"></script>
+    <script src="generic/controller/1/edit.js" type="text/javascript"></script>
+    <script src="generic/controller/1/remove.js" type="text/javascript"></script>
+    <script src="generic/controller/1/statistics.js" type="text/javascript"></script>
+    <!-- -- -->
+    <script src="generic/controller/1/x/plist.js" type="text/javascript"></script>
+    <script src="generic/controller/1/x/new.js" type="text/javascript"></script>
+    <script src="generic/controller/1/x/edit.js" type="text/javascript"></script>
+    <!-- -- -->
+    <script src="generic/controller/3/plist.js" type="text/javascript"></script>
+    <script src="generic/controller/3/view.js" type="text/javascript"></script>
+    <script src="generic/controller/3/new.js" type="text/javascript"></script>
+    <script src="generic/controller/3/edit.js" type="text/javascript"></script>
+    <script src="generic/controller/3/remove.js" type="text/javascript"></script>
+    <script src="generic/controller/3/statistics.js" type="text/javascript"></script>
+    <!-- -- -->
+    <script src="generic/controller/3/x/plist.js" type="text/javascript"></script>
+    <script src="generic/controller/3/x/new.js" type="text/javascript"></script>
+    <script src="generic/controller/3/x/edit.js" type="text/javascript"></script>
+    <!-- -- -->
+    <script src="generic/controller/4/plist.js" type="text/javascript"></script>
+    <script src="generic/controller/4/view.js" type="text/javascript"></script>
+    <script src="generic/controller/4/new.js" type="text/javascript"></script>
+    <script src="generic/controller/4/edit.js" type="text/javascript"></script>
+    <script src="generic/controller/4/remove.js" type="text/javascript"></script>
+    <script src="generic/controller/4/statistics.js" type="text/javascript"></script>
+    <!-- -- -->
+    <script src="generic/controller/4/x/plist.js" type="text/javascript"></script>
+    <script src="generic/controller/4/x/new.js" type="text/javascript"></script>
+    <script src="generic/controller/4/x/edit.js" type="text/javascript"></script>
+    <!-- -- -->
+    <script src="generic/controller/5/plist.js" type="text/javascript"></script>
+    <script src="generic/controller/5/view.js" type="text/javascript"></script>
+    <script src="generic/controller/5/statistics.js" type="text/javascript"></script>
+    <!-- -- -->
+    <script src="generic/controller/5/x/plist.js" type="text/javascript"></script>
+
+
+
+
+    <script>
+        var _captchaTries = 0;
+        function recaptchaOnload() {
+            _captchaTries++;
+            if (_captchaTries > 9)
+                return;
+            if ($('#recaptcha').length > 0) {
+                grecaptcha.render("recaptcha", {
+                    sitekey: '6Ld28lkUAAAAAOSlvZ7CKxSq-4xxgg_wAA25Xd7Q',
+                    callback: function () {
+                        console.log('recaptcha callback');
+                    }
+                });
+                return;
+            }
+            window.setTimeout(recaptchaOnload, 1000);
+        }
+    </script>
+</body>
+
+</html>
