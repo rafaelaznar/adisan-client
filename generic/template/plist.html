@@ -137,22 +137,21 @@
                                 </div>
                             </div>
                         </div>
-                        <hr />
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-3 col-sm-12">
-                                        <cplistinfo url="url"
+                        <hr ng-show="!status">
+                   
+                        <div class="row"  ng-show="!status">
+                            <div class="col-lg-3 col-md-3 col-sm-12">
+                                <cplistinfo url="url"
                                                     numpage="numpage"
                                                     rpp="rpp"
                                                     registers="registers"
                                                     orderparams="orderParams"
                                                     filterparams="filterParams"
                                                     searchtext="searchText">
-                                        </cplistinfo>
-                                    </div>
-                                    <div class="col-lg-6  col-md-6 col-sm-8 text-center">
-                                        <cplistpagination url="url"
+                                </cplistinfo>
+                                </div>
+                            <div class="col-lg-6  col-md-6 col-sm-8 text-center">
+                                <cplistpagination url="url"
                                                           numpage="numpage"
                                                           rpp="rpp"
                                                           pages="pages"
@@ -160,19 +159,18 @@
                                                           filterParams="filterParams"
                                                           orderParams="orderParams"
                                                           sfilterParams="sfilterParams">
-                                        </cplistpagination>
-                                    </div>
-                                    <div class="col-lg-3  col-md-3 col-sm-4 text-center">
-                                        <cplistrpp url="url"
+                                </cplistpagination>
+                            </div>
+                            <div class="col-lg-3  col-md-3 col-sm-4 text-center">
+                                <cplistrpp url="url"
                                                    numpage="numpage"
                                                    rpp="rpp"
                                                    filterParams="filterParams"
                                                    orderParams="orderParams">
-                                        </cplistrpp>
-                                    </div>
-                                </div>
+                                </cplistrpp>
                             </div>
                         </div>
+                    
                         <div class="row">
                             <div class="col-xs-12">
                                 <div id="datos" ng-show="!status">
@@ -193,7 +191,8 @@
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'Date'" class="text-center"><span class="fa fa-calendar">&nbsp;</span>{{oBean[oMetap.Name]|fechasinhora}}</div>
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'Integer'" class="text-center">{{oBean[oMetap.Name]}}</div>
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'Decimal'" class="text-center">{{oBean[oMetap.Name]}}</div>
-                                                        <div ng-if="oMetap.IsVisible && oMetap.Type == 'String'" class="text-left">{{oBean[oMetap.Name]|clipString}}</div>
+                                                        <div ng-if="oMetap.IsVisible && oMetap.Type == 'String' && metao.TableName!='diagnostico'" class="text-left">{{oBean[oMetap.Name]|clipString}}</div>
+                                                        <div ng-if="oMetap.IsVisible && oMetap.Type == 'String' && metao.TableName=='diagnostico'" class="text-left">{{oBean[oMetap.Name]}}</div>
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'LongText'" class="text-left">{{oBean[oMetap.Name]|clipString}}</div>
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'Calculated'" class="text-left">{{oBean[oMetap.Name]|clipString}}</div>
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'Boolean'" class="text-center" ng-bind-html="oBean[oMetap.Name] | booleanizate"></div>

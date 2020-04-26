@@ -66,20 +66,28 @@ genericModule.controller('plistGenericController3',
             function getDataFromServer() {
                 serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {
                     if (response.status == 200) {
-                        $scope.registers = response.data.json;
-                        $scope.pages = toolService.calculatePages($scope.rpp, $scope.registers);
-                        if ($scope.numpage > $scope.pages) {
-                            $scope.numpage = $scope.pages;
+                        if (response.data.status == 200) {
+                            $scope.registers = response.data.json;
+                            $scope.pages = toolService.calculatePages($scope.rpp, $scope.registers);
+                            if ($scope.numpage > $scope.pages) {
+                                $scope.numpage = $scope.pages;
+                            }
+                            return serverCallService.getPage($scope.ob, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
+                        } else {
+                            $scope.status = "Error: " + response.data.json;
                         }
-                        return serverCallService.getPage($scope.ob, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
                     } else {
                         $scope.status = "Error en la recepción de datos del servidor";
                     }
                 }).then(function (response) {
                     if (response.status == 200) {
-                        $scope.page = response.data.json.data;
-                        $scope.metao = response.data.json.metaObject;
-                        $scope.metap = response.data.json.metaProperties;
+                        if (response.data.status == 200) {
+                            $scope.page = response.data.json.data;
+                            $scope.metao = response.data.json.metaObject;
+                            $scope.metap = response.data.json.metaProperties;
+                        } else {
+                            $scope.status = "Error: " + response.data.json;
+                        }
                     } else {
                         $scope.status = "Error en la recepción de datos del servidor";
                     }
@@ -226,7 +234,7 @@ genericModule.controller('plistGenericController3',
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             getDataFromServer();
-                        } else  {
+                        } else {
                             $scope.status = "Error: " + response.data.json;
                         }
                     }

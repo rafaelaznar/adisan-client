@@ -22,6 +22,7 @@ function menuCtrl($location, serverCallService) {
 
     self.isActive = function (viewLocation) {
         //return viewLocation === $location.path();
-        return $location.path().startsWith(viewLocation);
+        //console.log($location.path() , viewLocation , $location.path().startsWith(viewLocation))
+        return $location.path().startsWith(viewLocation);        
     };
 }

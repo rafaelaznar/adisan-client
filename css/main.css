@@ -5718,3 +5718,12 @@ button.close {
     font-size: 12px;
     line-height: 1.5;
   }
+
+  /* ------------------------------------ modal ancho responsivo --- */
+
+
+    .modal-dialog {
+        width: auto;
+        max-width:90%;
+    }
+

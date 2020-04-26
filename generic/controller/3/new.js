@@ -93,6 +93,9 @@ genericModule.controller('newGenericController3',
                             $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");
                             $scope.bean.fecha_inicio = moment().format('DD/MM/YYYY');
                         }
+                        if ($scope.ob == 'episodiodiagnostico') {
+                            $scope.bean.fecha = moment().format('DD/MM/YYYY');
+                        }
                         //-------------------------------------------------------------
 
                     } else {

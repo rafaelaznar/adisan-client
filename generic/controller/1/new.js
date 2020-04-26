@@ -88,6 +88,9 @@ genericModule.controller('newGenericController1',
                             $scope.bean['obj_usuario'].data.id = $scope.linkedbean.data.obj_usuario.data.id;
                             $scope.bean['obj_paciente'].data.id = $scope.linkedbean.data.obj_paciente.data.id;
                         }
+                        if ($scope.ob == 'episodiodiagnostico') {
+                            $scope.bean.fecha = moment().format('DD/MM/YYYY');
+                        }
                         //--
 
 
