@@ -66,6 +66,15 @@ genericModule.controller('editGenericController4',
                         $scope.metao = response.data.json.metaObject;
                         $scope.metap = response.data.json.metaProperties;
 
+                        //--
+                        response.data.json.metaProperties.forEach(function (property) {
+                            if (property.Type == 'ForeignObject' && !$scope.bean[property.Name]) {
+                                $scope.bean[property.Name] = {};
+                                $scope.bean[property.Name].data = {};
+                                $scope.bean[property.Name].data.id = null;
+                            }
+                        });
+                        //--
 
                         //------------------------ESPECIFICO -------------------------------------
                         if ($scope.ob == 'paciente') {

@@ -82,6 +82,7 @@ genericModule.controller('editXGeneric1Controller',
                         $scope.metao = response.data.json.metaObject;
                         $scope.metap = response.data.json.metaProperties;
 
+                        //--                                                
                         response.data.json.metaProperties.forEach(function (property) {
                             if (property.Type == 'ForeignObject' && !$scope.bean[property.Name]) {
                                 $scope.bean[property.Name] = {};
@@ -93,7 +94,7 @@ genericModule.controller('editXGeneric1Controller',
                                 }
                             }
                         });
-
+                        //--
 
                     } else {
                         $scope.status = "Error: " + response.data.json;

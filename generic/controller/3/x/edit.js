@@ -85,32 +85,45 @@ genericModule.controller('editXGeneric3Controller',
                         $scope.metao = response.data.json.metaObject;
                         $scope.metap = response.data.json.metaProperties;
 
+                        //--                                                
+                        response.data.json.metaProperties.forEach(function (property) {
+                            if (property.Type == 'ForeignObject' && !$scope.bean[property.Name]) {
+                                $scope.bean[property.Name] = {};
+                                $scope.bean[property.Name].data = {};
+                                if (property.Name == 'obj_' + $scope.xob) {
+                                    $scope.bean[property.Name].data.id = $scope.xid;
+                                } else {
+                                    $scope.bean[property.Name].data.id = null;
+                                }
+                            }
+                        });
+                        //--
 
-                       //------------------ESPECIFICO-------------------------------------
-                       if ($scope.ob == 'usuario') {
-                        $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_tipousuario");
-                        $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_centro");
-                        $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_centrosanitario");
-                    }
+                        //------------------ESPECIFICO-------------------------------------
+                        if ($scope.ob == 'usuario') {
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_tipousuario");
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_centro");
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_centrosanitario");
+                        }
 
 
-                    if ($scope.ob == 'episodio') {
-                        $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");
-                        $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
-                    }
-                    /*
-                    if ($scope.ob == 'subepisodio') {
-                        $scope.bean['obj_episodio'].data.id = $scope.linkedbean.data.id;
-                        $scope.bean['obj_usuario'].data.id = $scope.linkedbean.data.obj_usuario.data.id;
-                        $scope.bean['obj_paciente'].data.id = $scope.linkedbean.data.obj_paciente.data.id;
-                    }
-                    */
-                    if ($scope.ob == 'subepisodio') {
-                        $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_paciente");
-                        $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
-                        $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");
-                    }
-                    //-------------------------------------------------------------
+                        if ($scope.ob == 'episodio') {
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
+                        }
+                        /*
+                        if ($scope.ob == 'subepisodio') {
+                            $scope.bean['obj_episodio'].data.id = $scope.linkedbean.data.id;
+                            $scope.bean['obj_usuario'].data.id = $scope.linkedbean.data.obj_usuario.data.id;
+                            $scope.bean['obj_paciente'].data.id = $scope.linkedbean.data.obj_paciente.data.id;
+                        }
+                        */
+                        if ($scope.ob == 'subepisodio') {
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_paciente");
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");
+                        }
+                        //-------------------------------------------------------------
 
                     } else {
                         $scope.status = "Error: " + response.data.json;

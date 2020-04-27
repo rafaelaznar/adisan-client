@@ -85,6 +85,20 @@ genericModule.controller('editXGeneric4Controller',
                         $scope.metao = response.data.json.metaObject;
                         $scope.metap = response.data.json.metaProperties;
 
+                        //--                                                
+                        response.data.json.metaProperties.forEach(function (property) {
+                            if (property.Type == 'ForeignObject' && !$scope.bean[property.Name]) {
+                                $scope.bean[property.Name] = {};
+                                $scope.bean[property.Name].data = {};
+                                if (property.Name == 'obj_' + $scope.xob) {
+                                    $scope.bean[property.Name].data.id = $scope.xid;
+                                } else {
+                                    $scope.bean[property.Name].data.id = null;
+                                }
+                            }
+                        });
+                        //--
+
                         //------------------------ESPECIFICO -------------------------------------   
                         if ($scope.ob == 'paciente') {
                             $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");

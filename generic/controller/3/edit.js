@@ -65,17 +65,26 @@ genericModule.controller('editGenericController3',
                         $scope.metao = response.data.json.metaObject;
                         $scope.metap = response.data.json.metaProperties;
 
+                        //--
+                        response.data.json.metaProperties.forEach(function (property) {
+                            if (property.Type == 'ForeignObject' && !$scope.bean[property.Name]) {
+                                $scope.bean[property.Name] = {};
+                                $scope.bean[property.Name].data = {};
+                                $scope.bean[property.Name].data.id = null;
+                            }
+                        });
+                        //--
 
                         //------------------ESPECIFICO-------------------------------------
                         if ($scope.ob == 'usuario') {
                             $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_tipousuario");
                             $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_centro");
-                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_centrosanitario");                            
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_centrosanitario");
                         }
 
                         if ($scope.ob == 'episodio') {
                             $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");
-                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");                            
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
                         }
 
                         if ($scope.ob == 'subepisodio') {
