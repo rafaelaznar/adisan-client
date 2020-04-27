@@ -49,7 +49,7 @@ moduloServicios.factory('constantService', function () {
             return true;
         },
         getGlobalNeighbourhood: function () {
-            return 2;
+            return 3;
         }
     }
 });

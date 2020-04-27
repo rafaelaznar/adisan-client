@@ -201,8 +201,8 @@ THE SOFTWARE.
                                     <div ng-if="oMetap.IsVisible && oMetap.Type == 'Date'" class="text-center"><span class="fa fa-calendar">&nbsp;</span>{{oBean[oMetap.Name]}}</div>
                                     <div ng-if="oMetap.IsVisible && oMetap.Type == 'Integer'" class="text-center">{{oBean[oMetap.Name]}}</div>
                                     <div ng-if="oMetap.IsVisible && oMetap.Type == 'Decimal'" class="text-center">{{oBean[oMetap.Name]}}</div>
-                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'String' && metao.TableName!='diagnostico'" class="text-left">{{oBean[oMetap.Name]|clipString}}</div>
-                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'String' && metao.TableName=='diagnostico'" class="text-left">{{oBean[oMetap.Name]}}</div>
+                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'String' && metao.TableName!='catalogodiagnosticos'" class="text-left">{{oBean[oMetap.Name]|clipString}}</div>
+                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'String' && metao.TableName=='catalogodiagnosticos'" class="text-left">{{oBean[oMetap.Name]}}</div>
                                     <div ng-if="oMetap.IsVisible && oMetap.Type == 'Calculated'" class="text-left">{{oBean[oMetap.Name]|clipString}}</div>
                                     <div ng-if="oMetap.IsVisible && oMetap.Type == 'Calculated'" class="text-left">{{oBean[oMetap.Name]|clipString}}</div>
                                     <div ng-if="oMetap.IsVisible && oMetap.Type == 'Boolean'" class="text-center" ng-bind-html="oBean[oMetap.Name] | booleanizate"></div>                                                        

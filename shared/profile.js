@@ -40,7 +40,7 @@ moduloSistema.controller('ProfileController', ['$scope', '$routeParams', '$locat
 
 
         $scope.authStatus = auth.data.status;
-        $scope.authUsername = auth.data.message;
+        $scope.session_info = auth.data.json.data;
         if ($scope.authStatus != 200) {
           $location.path("/login");
         } else {
