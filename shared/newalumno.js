@@ -73,21 +73,24 @@ moduloUsuario.controller('UsuarioNewalumno9Controller',
                     if ($scope.bean.login) {
                         $http.get(constantService.getAppUrl() + '?ob=usuario&op=checklogin&login=' + $scope.bean.login, 'GET', '').then(function (response) {
                             if (response.status == 200) {
-                                if (response.data.json == "OK") {
+                                if (response.data.status == 200) {
                                     //$scope.outerForm.login.$setValidity('repetido', false);
                                     //f.outerForm.login.$setValidity('valid', true);
                                     $scope.fase = 2;
+                                } else {
+                                    alert('El nombre del usuario elegido no es correcto o está repetido. Escribe otro nombre.');
+                                    return false;
                                 }
                             } else {
                                 //$scope.outerForm.login.$setValidity('repetido', true);
                                 //f.outerForm.login.$setValidity('valid', false);
-                                alert('El nombre del usuario elegido no es correcto o está repetido. Escribe otro nombre.');
+                                alert('Error de comunicación con el servidor.');
                                 return false;
                             }
                         }, function errorCallback(response, status) {
                             //f.outerForm.login.$setValidity('valid', false);
                             //f.outerForm.login.$valid=false;                               
-                            alert('El nombre del usuario elegido no es correcto o está repetido. Escribe otro nombre.');
+                            alert('Error de comunicación con el servidor.');
                             return false;
                         });
                     }
