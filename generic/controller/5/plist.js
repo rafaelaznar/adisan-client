@@ -133,7 +133,7 @@ genericModule.controller('plistGenericController5',
                 return true;
             }
             $scope.showNewButton = function (metao) {
-                return metao.canCreateObject;
+                if (metao) { return metao.canCreateObject; } else { return false; }
             }
             $scope.showEditButton = function (oBean) {
                 return oBean.canUpdate;

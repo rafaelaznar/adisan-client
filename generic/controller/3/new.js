@@ -75,22 +75,22 @@ genericModule.controller('newGenericController3',
 
                         //------------------ESPECIFICO-------------------------------------
                         if ($scope.ob == 'usuario') {
-                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_tipousuario");
-                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_centro");
-                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_centrosanitario");
+                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_tipousuario");
+                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_centro");
+                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_centrosanitario");
                             $scope.bean.fecha_alta = moment().format('DD/MM/YYYY');
                         }
-
+                        if ($scope.ob == 'paciente') {                         
+                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_centrosanitario");
+                        }
                         if ($scope.ob == 'episodio') {
-                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");
-                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
+                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");                            
                             $scope.bean.fecha_inicio = moment().format('DD/MM/YYYY');
                         }
 
                         if ($scope.ob == 'subepisodio') {
                             $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_paciente");
-                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
-                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");
+                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");
                             $scope.bean.fecha_inicio = moment().format('DD/MM/YYYY');
                         }
                         if ($scope.ob == 'episodiodiagnostico') {
@@ -133,6 +133,12 @@ genericModule.controller('newGenericController3',
             $scope.close = function () {
                 $location.path('/home');
             };
+            $scope.isFormVisible = function (oMeta) {
+                if (!oMeta.IsFormVisible4) {
+                    $scope.metap = toolService.deleteForeignKey($scope.metap, oMeta.Name);
+                }
+                return oMeta.IsFormVisible4;
+            }
         }
     ]);
 

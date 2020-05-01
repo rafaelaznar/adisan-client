@@ -82,11 +82,11 @@ genericModule.controller('viewGenericController4',
             $scope.close = function () {
                 $location.path('/home');
             };
-            $scope.showEditButton = function () {
-                return $scope.bean.canUpdate;
+            $scope.showEditButton = function (bean) {
+                if (bean) { return bean.canUpdate; } else { return false; }
             }
-            $scope.showRemoveButton = function () {
-                return $scope.bean.canDelete;
+            $scope.showRemoveButton = function (bean) {
+                if (bean) { return bean.canDelete; } else { return false; }
             }
         }
     ]);

@@ -101,27 +101,22 @@ genericModule.controller('editXGeneric3Controller',
 
                         //------------------ESPECIFICO-------------------------------------
                         if ($scope.ob == 'usuario') {
-                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_tipousuario");
-                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_centro");
-                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_centrosanitario");
+                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_tipousuario");
+                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_centro");
+                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_centrosanitario");
                         }
-
+                        if ($scope.ob == 'paciente') {                         
+                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_centrosanitario");
+                        }
 
                         if ($scope.ob == 'episodio') {
-                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");
-                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
-                        }
-                        /*
-                        if ($scope.ob == 'subepisodio') {
-                            $scope.bean['obj_episodio'].data.id = $scope.linkedbean.data.id;
-                            $scope.bean['obj_usuario'].data.id = $scope.linkedbean.data.obj_usuario.data.id;
-                            $scope.bean['obj_paciente'].data.id = $scope.linkedbean.data.obj_paciente.data.id;
-                        }
-                        */
+                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");
+                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
+                        }                        
                         if ($scope.ob == 'subepisodio') {
                             $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_paciente");
-                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
-                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");
+                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
+                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");
                         }
                         //-------------------------------------------------------------
 
@@ -159,6 +154,12 @@ genericModule.controller('editXGeneric3Controller',
             $scope.close = function () {
                 $location.path('/home');
             };
+            $scope.isFormVisible = function (oMeta) {
+                if (!oMeta.IsFormVisible4) {
+                    $scope.metap = toolService.deleteForeignKey($scope.metap, oMeta.Name);
+                }
+                return oMeta.IsFormVisible4;
+            }
         }
     ]);
 

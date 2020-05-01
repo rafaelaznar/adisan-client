@@ -107,5 +107,11 @@ genericModule.controller('editGenericController1',
             $scope.close = function () {
                 $location.path('/home');
             };
+            $scope.isFormVisible = function (oMeta) {
+                if (!oMeta.IsFormVisible4) {
+                    $scope.metap = toolService.deleteForeignKey($scope.metap, oMeta.Name);
+                }
+                return oMeta.IsFormVisible4;
+            }
         }
     ]);

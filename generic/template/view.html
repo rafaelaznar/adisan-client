@@ -86,8 +86,8 @@
                                 </table>
                                 <div class="control-group text-right">
                                     <div class="controls">                                        
-                                        <a ng-if="showEditButton()" class="btn btn-primary" href="{{ob}}/{{profile}}/edit/{{bean.id}}">Editar</a>
-                                        <a ng-if="showRemoveButton()" class="btn btn-danger" href="{{ob}}/{{profile}}/remove/{{bean.id}}">Borrar</a>
+                                        <a ng-if="showEditButton(bean)" class="btn btn-primary" href="{{ob}}/{{profile}}/edit/{{bean.id}}">Editar</a>
+                                        <a ng-if="showRemoveButton(bean)" class="btn btn-danger" href="{{ob}}/{{profile}}/remove/{{bean.id}}">Borrar</a>
                                         <a class="btn btn-info" href="{{ob}}/{{profile}}/plist">Ir al listado de {{ob}}</a>
                                         <a class="btn btn-default" ng-click="back()">Volver</a>
                                         <a class="btn btn-default" href="home">Cerrar</a>
