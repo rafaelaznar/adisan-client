@@ -76,6 +76,7 @@ genericModule.controller('newGenericController4',
                         //------------------ESPECIFICO-------------------------------------
                         if ($scope.ob == 'paciente') {
                             $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_centrosanitario");
                         }
                         if ($scope.ob == 'episodio') {
                             $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");

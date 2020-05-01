@@ -129,8 +129,8 @@ genericModule.controller('plistXGeneric1Controller',
             $scope.showViewButton = function () {
                 return true;
             }
-            $scope.showNewButton = function () {
-                return true;
+            $scope.showNewButton = function (metao) {
+                return metao.canCreateObject;
             }
             $scope.showEditButton = function (oBean) {
                 return oBean.canUpdate;
