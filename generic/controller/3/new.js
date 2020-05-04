@@ -134,10 +134,10 @@ genericModule.controller('newGenericController3',
                 $location.path('/home');
             };
             $scope.isFormVisible = function (oMeta) {
-                if (!oMeta.IsFormVisible4) {
+                if (!oMeta.IsFormVisible3) {
                     $scope.metap = toolService.deleteForeignKey($scope.metap, oMeta.Name);
                 }
-                return oMeta.IsFormVisible4;
+                return oMeta.IsFormVisible3;
             }
         }
     ]);
