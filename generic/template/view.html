@@ -69,8 +69,10 @@
                                             <td ng-if="oMetap.Type == 'Date'">{{bean[oMetap.Name]|fechasinhora}}</td>
                                             <td ng-if="oMetap.Type == 'Integer'">{{bean[oMetap.Name]}}</td>
                                             <td ng-if="oMetap.Type == 'Decimal'">{{bean[oMetap.Name]}}</td>
-                                            <td ng-if="oMetap.Type == 'String'">{{bean[oMetap.Name]}}</td>
-                                            <td ng-if="oMetap.Type == 'LongText'">{{bean[oMetap.Name]|clipString}}</td>
+                                            <td ng-if="oMetap.Type == 'String' && oMetap.Clip">{{bean[oMetap.Name]|clipString}}</td>
+                                            <td ng-if="oMetap.Type == 'String' && !oMetap.Clip">{{bean[oMetap.Name]}}</td>
+                                            <td ng-if="oMetap.Type == 'LongText' && oMetap.Clip">{{bean[oMetap.Name]|clipString}}</td>
+                                            <td ng-if="oMetap.Type == 'LongText' && !oMetap.Clip">{{bean[oMetap.Name]}}</td>
                                             <td ng-if="oMetap.Type == 'Calculated'">{{bean[oMetap.Name]}}</td>
                                             <td ng-if="oMetap.Type == 'Boolean'" ng-bind-html="bean[oMetap.Name] | booleanizate"></td>
                                             <td ng-if="oMetap.Type == 'ForeignObject'">

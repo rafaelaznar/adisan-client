@@ -34,7 +34,7 @@ THE SOFTWARE.
     <div class="row">
         <div class="col-xs-12" ng-if="status">
             <div class="alert alert-danger" role="alert">
-                <h3 class="bg-danger">{{status}}</h3>                                
+                <h3 class="bg-danger">{{status}}</h3>
             </div>
         </div>
     </div>
@@ -42,15 +42,18 @@ THE SOFTWARE.
         <div class="col-xs-12" ng-if="!status">
             <div role="tabpanel">
                 <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a data-target="#pane0" aria-controls="pane0" role="tab" data-toggle="tab" aria-expanded="false">Consulta</a></li>
-                    <li role="presentation"><a data-target="#pane1" aria-controls="pane1" role="tab" data-toggle="tab">Filtro de servidor</a></li>
-                    <li role="presentation"><a data-target="#pane2" aria-controls="pane2" role="tab" data-toggle="tab">Filtro de cliente</a></li>                    
+                    <li role="presentation" class="active"><a data-target="#pane0" aria-controls="pane0" role="tab"
+                            data-toggle="tab" aria-expanded="false">Consulta</a></li>
+                    <li role="presentation"><a data-target="#pane1" aria-controls="pane1" role="tab"
+                            data-toggle="tab">Filtro de servidor</a></li>
+                    <li role="presentation"><a data-target="#pane2" aria-controls="pane2" role="tab"
+                            data-toggle="tab">Filtro de cliente</a></li>
                 </ul>
                 <div class="tab-content">
                     <div role="tabpanel" id="pane0" class="tab-pane fade active in">
                         <p></p>
                         <div class="row">
-                            <div class="col-lg-3 col-md-3 col-sm-12">                                                    
+                            <div class="col-lg-3 col-md-3 col-sm-12">
                                 <plistinfospa></plistinfospa>
                             </div>
                             <div class="col-lg-6  col-md-6 col-sm-8 text-center">
@@ -68,65 +71,45 @@ THE SOFTWARE.
                                 <form class="navbar-form navbar-left" role="form" id="typeFilterForm">
                                     <div class="form-group input-group input-group-xs">
                                         <span class="input-group-btn"><button class="btn">Filtro</button></span>
-                                        <select  class="form-control input-xs"  ng-model="filterType">
-                                            <option ng-repeat="f in metap|filter:{Type:'!Calculated'}|filter:{Type:'!Link'}"
-                                                    value="{{f.Name}}">Filtrar por {{f.LongName}}
+                                        <select class="form-control input-xs" ng-model="filterType">
+                                            <option
+                                                ng-repeat="f in metap|filter:{Type:'!Calculated'}|filter:{Type:'!Link'}"
+                                                value="{{f.Name}}">Filtrar por {{f.LongName}}
                                             </option>
                                         </select>
-                                    </div>  
+                                    </div>
 
                                 </form>
                             </div>
                             <div class="col-md-7">
                                 <div ng-repeat="f in metap" ng-show="filterType == f.Name" value="f.Name">
                                     <div ng-show="f.Type == 'Integer' || f.Type == 'Id'">
-                                        <cplistfilterbyintegerspa
-                                            field="f"
-                                            rpp="rpp"
-                                            numpage="numpage"
-                                            orderparams="orderParams"
-                                            filterparams="filterParams">
+                                        <cplistfilterbyintegerspa field="f" rpp="rpp" numpage="numpage"
+                                            orderparams="orderParams" filterparams="filterParams">
                                         </cplistfilterbyintegerspa>
                                     </div>
                                     <p></p>
                                     <div ng-show="f.Type == 'String'">
-                                        <cplistfilterbystringspa
-                                            field="f"
-                                            rpp="rpp"
-                                            numpage="numpage"
-                                            orderparams="orderParams"
-                                            filterparams="filterParams">
+                                        <cplistfilterbystringspa field="f" rpp="rpp" numpage="numpage"
+                                            orderparams="orderParams" filterparams="filterParams">
                                         </cplistfilterbystringspa>
                                     </div>
                                     <p></p>
                                     <div ng-show="f.Type == 'Date'">
-                                        <cplistfilterbydatespa
-                                            field="f"
-                                            rpp="rpp"
-                                            numpage="numpage"
-                                            orderparams="orderParams"
-                                            filterparams="filterParams">
+                                        <cplistfilterbydatespa field="f" rpp="rpp" numpage="numpage"
+                                            orderparams="orderParams" filterparams="filterParams">
                                         </cplistfilterbydatespa>
                                     </div>
                                     <p></p>
                                     <div ng-show="f.Type == 'Boolean'">
-                                        <cplistfilterbybooleanspa
-                                            field="f"
-                                            rpp="rpp"
-                                            numpage="numpage"
-                                            orderparams="orderParams"
-                                            filterparams="filterParams">
+                                        <cplistfilterbybooleanspa field="f" rpp="rpp" numpage="numpage"
+                                            orderparams="orderParams" filterparams="filterParams">
                                         </cplistfilterbybooleanspa>
                                     </div>
                                     <p></p>
                                     <div ng-show="f.Type == 'ForeignObject'">
-                                        <cplistfilterbyforeignspa
-                                            field="f"
-                                            rpp="rpp"
-                                            numpage="numpage"
-                                            orderparams="orderParams"
-                                            filterparams="filterParams"
-                                            profile="profile">
+                                        <cplistfilterbyforeignspa field="f" rpp="rpp" numpage="numpage"
+                                            orderparams="orderParams" filterparams="filterParams" profile="profile">
                                         </cplistfilterbyforeignspa>
                                     </div>
                                 </div>
@@ -139,32 +122,20 @@ THE SOFTWARE.
 
 
                                 <div ng-show="filterType == 0">
-                                    <plistfilterbystringspa                                   
-                                        fields="filterString"
-                                        rpp="rpp"
-                                        numpage="numpage"
-                                        orderparams="orderParams"
-                                        filterparams="filterParams">
+                                    <plistfilterbystringspa fields="filterString" rpp="rpp" numpage="numpage"
+                                        orderparams="orderParams" filterparams="filterParams">
                                     </plistfilterbystringspa>
                                 </div>
                                 <p></p>
                                 <div ng-show="filterType == 1">
-                                    <plistfilterbynumberspa                                     
-                                        fields="filterNumber"
-                                        rpp="rpp"
-                                        numpage="numpage"
-                                        orderparams="orderParams"
-                                        filterparams="filterParams">
+                                    <plistfilterbynumberspa fields="filterNumber" rpp="rpp" numpage="numpage"
+                                        orderparams="orderParams" filterparams="filterParams">
                                     </plistfilterbynumberspa>
                                 </div>
                                 <p></p>
                                 <div ng-show="filterType == 2">
-                                    <plistfilterbydatespa                                     
-                                        fields="filterDate"
-                                        rpp="rpp"
-                                        numpage="numpage"
-                                        orderparams="orderParams"
-                                        filterparams="filterParams">
+                                    <plistfilterbydatespa fields="filterDate" rpp="rpp" numpage="numpage"
+                                        orderparams="orderParams" filterparams="filterParams">
                                     </plistfilterbydatespa>
                                 </div>
                             </div>
@@ -174,13 +145,16 @@ THE SOFTWARE.
                         <div class="row">
                             <div class="col-md-12">
                                 <p></p>
-                                <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="empresaForm">
-                                    <input id="inputFiltervalueClient" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="searchText">
+                                <form class="navbar-form navbar-right" role="form" action="Controller" method="post"
+                                    id="empresaForm">
+                                    <input id="inputFiltervalueClient" class="form-control" name="filtervalue"
+                                        type="text" size="20" maxlength="50" value="" width="100" style="width: 140px"
+                                        placeholder="Valor" ng-model="searchText">
                                 </form>
                                 <p></p>
                             </div>
                         </div>
-                    </div>              
+                    </div>
                 </div>
             </div>
             <div id="datos" ng-if="!status">
@@ -190,31 +164,43 @@ THE SOFTWARE.
                             <cplistvisiblefields fields="metap"></cplistvisiblefields>
                         </div>
                     </div>
-                    <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">
+                    <table
+                        class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">
                         <thead plistheaderspa></thead>
                         <tbody>
                             <tr ng-repeat="oBean in page| filter:searchText">
-                                <td ng-repeat="oMetap in metap" ng-if="oMetap.IsVisible && oMetap.Type == 'Id'"  class="text-right">
-                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'Id'"><b>{{oBean[oMetap.Name]}}</b></div>
+                                <td ng-repeat="oMetap in metap" ng-if="oMetap.IsVisible && oMetap.Type == 'Id'"
+                                    class="text-right">
+                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'Id'"><b>{{oBean[oMetap.Name]}}</b>
+                                    </div>
                                 </td>
-                                <td ng-repeat="oMetap in metap" ng-if="oMetap.IsVisible && oMetap.Type != 'Id'"  class="text-right">
-                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'Date'" class="text-center"><span class="fa fa-calendar">&nbsp;</span>{{oBean[oMetap.Name]}}</div>
-                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'Integer'" class="text-center">{{oBean[oMetap.Name]}}</div>
-                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'Decimal'" class="text-center">{{oBean[oMetap.Name]}}</div>
-                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'String' && metao.TableName!='catalogodiagnosticos'" class="text-left">{{oBean[oMetap.Name]|clipString}}</div>
-                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'String' && metao.TableName=='catalogodiagnosticos'" class="text-left">{{oBean[oMetap.Name]}}</div>
-                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'Calculated'" class="text-left">{{oBean[oMetap.Name]|clipString}}</div>
-                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'Calculated'" class="text-left">{{oBean[oMetap.Name]|clipString}}</div>
-                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'Boolean'" class="text-center" ng-bind-html="oBean[oMetap.Name] | booleanizate"></div>                                                        
+                                <td ng-repeat="oMetap in metap" ng-if="oMetap.IsVisible && oMetap.Type != 'Id'"
+                                    class="text-right">
+                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'Date'" class="text-center"><span
+                                            class="fa fa-calendar">&nbsp;</span>{{oBean[oMetap.Name]}}</div>
+                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'Integer'" class="text-center">
+                                        {{oBean[oMetap.Name]}}</div>
+                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'Decimal'" class="text-center">
+                                        {{oBean[oMetap.Name]}}</div>
+                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'String' && oMetap.Clip"
+                                        class="text-left">{{oBean[oMetap.Name]|clipString}}</div>
+                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'String' && !oMetap.Clip"
+                                        class="text-left">{{oBean[oMetap.Name]}}</div>
+                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'Calculated'" class="text-left">
+                                        {{oBean[oMetap.Name]|clipString}}</div>
+                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'Calculated'" class="text-left">
+                                        {{oBean[oMetap.Name]|clipString}}</div>
+                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'Boolean'" class="text-center"
+                                        ng-bind-html="oBean[oMetap.Name] | booleanizate"></div>
                                     <div ng-if="oMetap.IsVisible && oMetap.Type == 'ForeignObject'" class="text-left">
                                         <span class="{{oBean[oMetap.Name].metaObject.Icon}}"></span>
                                         <div>{{oBean[oMetap.Name]|getForeignDescription}}</div>
                                     </div>
-                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'Link'" class="text-center">                                                                             
+                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'Link'" class="text-center">
                                         <div>{{oBean[oMetap.Name]}}</div>
                                     </div>
                                 </td>
-                                <td plistoperationbarspa></td>                                
+                                <td plistoperationbarspa></td>
                             </tr>
                         </tbody>
                     </table>
@@ -223,7 +209,7 @@ THE SOFTWARE.
         </div>
     </div>
 </div>
-<div class="modal-footer">    
+<div class="modal-footer">
     <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button><br>
-    <div style="font-family: Questrial, serif;" ng-include="'include/footer.html'"></div>        
+    <div style="font-family: Questrial, serif;" ng-include="'include/footer.html'"></div>
 </div>
