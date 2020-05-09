@@ -185,7 +185,7 @@
 
 
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 1"
-                    ng-class="{'active': mn.isActive('/episodioprocedimento') || mn.isActive('/procedimiento') || mn.isActive('/catalogoprocedimientos') || mn.isActive('/procedimientomedico') || mn.isActive('/procedimientodiagnosticoinicial') || mn.isActive('/procedimientodiagnosticofinal') || mn.isActive('/procedimientopersonalsanitario') || mn.isActive('/prioridad') || mn.isActive('/tipoprocedimiento') || mn.isActive('/estado')}">
+                    ng-class="{'active': mn.isActive('/episodioprocedimiento') || mn.isActive('/procedimiento') || mn.isActive('/catalogoprocedimientos') || mn.isActive('/procedimientomedico') || mn.isActive('/procedimientodiagnosticoinicial') || mn.isActive('/procedimientodiagnosticofinal') || mn.isActive('/procedimientopersonalsanitario') || mn.isActive('/prioridad') || mn.isActive('/tipoprocedimiento') || mn.isActive('/estado')}">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button">
                         <i class="fa fa-icon-list-alt"></i>Procedimientos<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -222,7 +222,7 @@
                                 href="procedimientopersonalsanitario/1/plist"> <i
                                     ng-class="mn.meta.procedimientopersonalsanitario.Icon"></i>
                                 {{mn.meta.procedimientopersonalsanitario.PluralDescription}}</a></li>
-                        <li class="dropdown-header">Auxiliares</li>
+                        <li class="dropdown-header">Datos Auxiliares para procedimientos</li>
                         <li ng-class="{ 'active': mn.isActive('/prioridad/1/plist')}"><a href="prioridad/1/plist"> <i
                                     ng-class="mn.meta.prioridad.Icon"></i>
                                 {{mn.meta.prioridad.PluralDescription}}</a></li>
