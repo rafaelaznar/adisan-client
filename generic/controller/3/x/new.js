@@ -81,6 +81,8 @@ genericModule.controller('newXGeneric3Controller',
                         $scope.status = null;
                         //--For every foreign key create obj inside bean tobe filled...
                         $scope.bean = {};
+                        $scope.metao = response.data.json.metaObject;
+                        $scope.metap = response.data.json.metaProperties;
                         response.data.json.metaProperties.forEach(function (property) {
                             if (property.Type == 'ForeignObject') {
                                 $scope.bean[property.Name] = {};
@@ -90,37 +92,18 @@ genericModule.controller('newXGeneric3Controller',
                                 } else {
                                     $scope.bean[property.Name].data.id = null;
                                 }
+                                if ($scope.xob == "subepisodio" && property.Name == 'obj_episodio') {  //específico
+                                    $scope.bean[property.Name].data.id = $scope.xid;
+                                }
+                            }
+                            if (property.DefaultValue == "today") {
+                                $scope.bean[property.Name] = moment().format('DD/MM/YYYY');
                             }
                         });
-                        //--
-                        $scope.metao = response.data.json.metaObject;
-                        $scope.metap = response.data.json.metaProperties;
-
-
-                        //------------------ESPECIFICO-------------------------------------
-                        if ($scope.ob == 'usuario') {
-                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_tipousuario");
-                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_centro");
-                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_centrosanitario");
-                            $scope.bean.fecha_alta = moment().format('DD/MM/YYYY');
-                        }
-                        if ($scope.ob == 'paciente') {                         
-                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_centrosanitario");
-                        }
-
-                        if ($scope.ob == 'episodio') {
-                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");
-                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
-                            $scope.bean.fecha_inicio = moment().format('DD/MM/YYYY');
-                        }                                            
+                        //------------------ESPECIFICO-------------------------------------                                       
                         if ($scope.ob == 'subepisodio') {
                             $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_paciente");                            
-                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");
-                            $scope.bean.fecha_inicio = moment().format('DD/MM/YYYY');
                         }
-                        if ($scope.ob == 'episodiodiagnostico') {
-                            $scope.bean.fecha = moment().format('DD/MM/YYYY');
-                        }                        
                         //-------------------------------------------------------------
 
                     } else {

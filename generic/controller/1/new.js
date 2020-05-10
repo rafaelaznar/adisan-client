@@ -68,32 +68,15 @@ genericModule.controller('newGenericController1',
                                 $scope.bean[property.Name].data = {};
                                 $scope.bean[property.Name].data.id = null;
                             }
+                            if (property.DefaultValue == "today") {
+                                $scope.bean[property.Name] = moment().format('DD/MM/YYYY');
+                            }
                         });
                         //--
                         $scope.metao = response.data.json.metaObject;
                         $scope.metap = response.data.json.metaProperties;
-
                         //------------------ESPECIFICO-------------------------------------
-                        if ($scope.ob == 'usuario') {             
-                            $scope.bean.fecha_alta = moment().format('DD/MM/YYYY');
-                        }
-
-                        if ($scope.ob == 'episodio') {        
-                            $scope.bean.fecha_inicio = moment().format('DD/MM/YYYY');
-                        }
-
-                        if ($scope.ob == 'subepisodio') {        
-                            $scope.bean.fecha_inicio = moment().format('DD/MM/YYYY');
-                            $scope.bean['obj_episodio'].data.id = $scope.linkedbean.data.id;
-                            $scope.bean['obj_usuario'].data.id = $scope.linkedbean.data.obj_usuario.data.id;
-                            $scope.bean['obj_paciente'].data.id = $scope.linkedbean.data.obj_paciente.data.id;
-                        }
-                        if ($scope.ob == 'episodiodiagnostico') {
-                            $scope.bean.fecha = moment().format('DD/MM/YYYY');
-                        }
                         //--
-
-
                     } else {
                         $scope.status = "Error: " + response.data.json;
                     }

@@ -62,39 +62,27 @@ genericModule.controller('newGenericController4',
                         $scope.status = null;
                         //--For every foreign key create obj inside bean tobe filled...
                         $scope.bean = {};
-                        response.data.json.metaProperties.forEach(function (property) {
-                            if (property.Type == 'ForeignObject') {
-                                $scope.bean[property.Name] = {};
-                                $scope.bean[property.Name].data = {};
-                                $scope.bean[property.Name].data.id = null;
-                            }
-                        });
-                        //--
                         $scope.metao = response.data.json.metaObject;
                         $scope.metap = response.data.json.metaProperties;
-
-                        //------------------ESPECIFICO-------------------------------------
-                        //los comentados vienen a false en el formvisible+nivel de los metadatos
-                        //if ($scope.ob == 'paciente') {
-                        //    $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
-                        //    $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_centrosanitario");
-                        //}
-                        if ($scope.ob == 'episodio') {
-                            //    $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");
-                            //    $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
-                            $scope.bean.fecha_inicio = moment().format('DD/MM/YYYY');
-                        }
+                        response.data.json.metaProperties.forEach(function (property) {
+                            if (property.Type == 'ForeignObject') {
+                                if (property.IsFormVisible4 == true) {
+                                    $scope.bean[property.Name] = {};
+                                    $scope.bean[property.Name].data = {};
+                                    $scope.bean[property.Name].data.id = null;
+                                } else {
+                                    $scope.metap = toolService.deleteForeignKey($scope.metap, property.Name);
+                                }
+                            }
+                            if (property.DefaultValue == "today") {
+                                $scope.bean[property.Name] = moment().format('DD/MM/YYYY');
+                            }
+                        });
+                        //------------------ESPECIFICO-------------------------------------                                       
                         if ($scope.ob == 'subepisodio') {
-                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_paciente");
-                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
-                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");
-                            $scope.bean.fecha_inicio = moment().format('DD/MM/YYYY');
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_paciente");                            
                         }
-                        if ($scope.ob == 'episodiodiagnostico') {
-                            $scope.bean.fecha = moment().format('DD/MM/YYYY');
-                        }
-                        //----------------------------------------------------------------
-
+                        //-------------------------------------------------------------
                     } else {
                         $scope.status = "Error: " + response.data.json;
                     }

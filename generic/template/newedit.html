@@ -181,7 +181,7 @@
 
                                 <!-- foreign  ----------------------------------------------->
                                 <div ng-if="oMetap.Type == 'ForeignObject'"
-                                     ng-show="(oMetap.References != xob && isFormVisible(oMetap)) || (profile == 1)"
+                                     ng-show="(oMetap.References != xob && isFormVisible(oMetap) && !(xob == 'subepisodio' && oMetap.Name=='episodio') ) || (profile == 1)"
                                      class="form-group" id="{{oMetap.Name}}-group"
                                      ng-class="{'has-error': (outerForm[oMetap.Name].$error.exists || outerForm[oMetap.Name].$error.required) && !outerForm.$pristine}">
                                     <label class="control-label col-sm-2" for="{{oMetap.Name}}">
