@@ -204,7 +204,7 @@ moduloServicios.factory('toolService', ['$filter', function ($filter) {
             {
                 //necesita inyección de $filter
                 var icon = '<span class="' + linkedbean.metaObject.Icon + '"></span>';
-                var link = '<a href="' + linkedbean.metaObject.TableName + '/' + profile + '/view/' + linkedbean.data.id + '"> ' + icon + ' ' + linkedbean.metaObject.SingularDescription + ': ' + $filter('getForeignDescription')(linkedbean) + '</a>';
+                var link = '<a href="' + linkedbean.metaObject.TableName + '/' + profile + '/view/' + linkedbean.data.id + '"> ' + icon + ' ' + linkedbean.metaObject.SingularDescription + ': ' + $filter('getForeignDescription')(linkedbean) + ' (' + linkedbean.data.id +')'  +'</a>';
                 return '<h3 class="bg-info">' + link + '<h3>';
             },
 
