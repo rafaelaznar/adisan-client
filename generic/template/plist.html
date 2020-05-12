@@ -189,12 +189,13 @@
                                                     </td>
                                                     <td ng-init="setShowRemove(true)" ng-repeat="oMetap in metap" ng-if="oMetap.IsVisible && oMetap.Type != 'Id'"  class="text-right">
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'Date'" class="text-center"><span class="fa fa-calendar">&nbsp;</span>{{oBean[oMetap.Name]|fechasinhora}}</div>
+                                                        <div ng-if="oMetap.IsVisible && oMetap.Type == 'Datetime'" class="text-center"><span class="fa fa-calendar">&nbsp;</span>{{oBean[oMetap.Name]}}</div>
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'Integer'" class="text-center">{{oBean[oMetap.Name]}}</div>
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'Decimal'" class="text-center">{{oBean[oMetap.Name]}}</div>
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'String' && oMetap.Clip" class="text-left">{{oBean[oMetap.Name]|clipString}}</div>
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'String' && !oMetap.Clip" class="text-left">{{oBean[oMetap.Name]}}</div>
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'LongText'" class="text-left">{{oBean[oMetap.Name]|clipString}}</div>
-                                                        <div ng-if="oMetap.IsVisible && oMetap.Type == 'Calculated'" class="text-left">{{oBean[oMetap.Name]|clipString}}</div>
+                                                        <div ng-if="oMetap.IsVisible && oMetap.Type == 'Calculated'" class="text-left">{{oBean[oMetap.Name]}}</div>
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'Boolean'" class="text-center" ng-bind-html="oBean[oMetap.Name] | booleanizate"></div>
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'ForeignObject' && oBean[oMetap.Name]" class="text-left">
                                                             <span ng-if="oBean[oMetap.Name].data.id > 0" class="{{oBean[oMetap.Name].metaObject.Icon}}"></span>

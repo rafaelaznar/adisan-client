@@ -229,7 +229,8 @@
                                 {{mn.meta.estado.PluralDescription}}</a></li>
                     </ul>
                 </li>
-
+                <li ng-if="mn.session_info.obj_tipousuario.data.id == 1" ng-class="{'active': mn.isActive('/log')"><a
+                        href="log/1/plist">Log</a></li>
                 <!-- Coordinación ------------------------------------------- -->
                 <!-- Profesor -------------------------------------------    -->
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 3"
@@ -352,50 +353,50 @@
                 </li>
 
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 3"
-                ng-class="{'active': mn.isActive('/episodioprocedimiento') || mn.isActive('/procedimiento') || mn.isActive('/catalogoprocedimientos') || mn.isActive('/procedimientomedico') || mn.isActive('/procedimientodiagnosticoinicial') || mn.isActive('/procedimientodiagnosticofinal') || mn.isActive('/procedimientopersonalsanitario') || mn.isActive('/prioridad') || mn.isActive('/tipoprocedimiento') || mn.isActive('/estado')}">
-                <a class="dropdown-toggle" data-toggle="dropdown" role="button">
-                    <i class="fa fa-icon-list-alt"></i>Procedimientos<span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                    <li class="dropdown-header">Codificación</li>
-                    <li ng-class="{ 'active': mn.isActive('/episodioprocedimiento/3/plist')}"><a
-                            href="episodioprocedimiento/3/plist"> <i
-                                ng-class="mn.meta.episodioprocedimiento.Icon"></i>
-                            {{mn.meta.episodioprocedimiento.PluralDescription}}</a></li>
-                    <li ng-class="{ 'active': mn.isActive('/procedimiento/3/plist')}"><a
-                            href="procedimiento/3/plist"> <i ng-class="mn.meta.procedimiento.Icon"></i>
-                            {{mn.meta.procedimiento.PluralDescription}}</a></li>
-                    <li class="dropdown-header">Datos Específicos para procedimientos</li>
-                    <li ng-class="{ 'active': mn.isActive('/catalogoprocedimientos/3/plist')}"><a
-                            href="catalogoprocedimientos/3/plist"> <i
-                                ng-class="mn.meta.catalogoprocedimientos.Icon"></i>
-                            {{mn.meta.catalogoprocedimientos.PluralDescription}}</a></li>
-                    <li ng-class="{ 'active': mn.isActive('/procedimientomedico/3/plist')}"><a
-                            href="procedimientomedico/3/plist"> <i ng-class="mn.meta.procedimientomedico.Icon"></i>
-                            {{mn.meta.procedimientomedico.PluralDescription}}</a></li>
-                    <li ng-class="{ 'active': mn.isActive('/procedimientodiagnosticoinicial/3/plist')}"><a
-                            href="procedimientodiagnosticoinicial/3/plist"> <i
-                                ng-class="mn.meta.procedimientodiagnosticoinicial.Icon"></i>
-                            {{mn.meta.procedimientodiagnosticoinicial.PluralDescription}}</a></li>
-                    <li ng-class="{ 'active': mn.isActive('/procedimientodiagnosticofinal/3/plist')}"><a
-                            href="procedimientodiagnosticofinal/3/plist"> <i
-                                ng-class="mn.meta.procedimientodiagnosticofinal.Icon"></i>
-                            {{mn.meta.procedimientodiagnosticofinal.PluralDescription}}</a></li>
-                    <li ng-class="{ 'active': mn.isActive('/procedimientopersonalsanitario/3/plist')}"><a
-                            href="procedimientopersonalsanitario/3/plist"> <i
-                                ng-class="mn.meta.procedimientopersonalsanitario.Icon"></i>
-                            {{mn.meta.procedimientopersonalsanitario.PluralDescription}}</a></li>
-                    <li class="dropdown-header">Datos Auxiliares para procedimientos</li>
-                    <li ng-class="{ 'active': mn.isActive('/prioridad/3/plist')}"><a href="prioridad/3/plist"> <i
-                                ng-class="mn.meta.prioridad.Icon"></i>
-                            {{mn.meta.prioridad.PluralDescription}}</a></li>
-                    <li ng-class="{ 'active': mn.isActive('/tipoprocedimiento/3/plist')}"><a
-                            href="tipoprocedimiento/3/plist"> <i ng-class="mn.meta.tipoprocedimiento.Icon"></i>
-                            {{mn.meta.tipoprocedimiento.PluralDescription}}</a></li>
-                    <li ng-class="{ 'active': mn.isActive('/estado/3/plist')}"><a href="estado/3/plist"> <i
-                                ng-class="mn.meta.estado.Icon"></i>
-                            {{mn.meta.estado.PluralDescription}}</a></li>
-                </ul>
-            </li>
+                    ng-class="{'active': mn.isActive('/episodioprocedimiento') || mn.isActive('/procedimiento') || mn.isActive('/catalogoprocedimientos') || mn.isActive('/procedimientomedico') || mn.isActive('/procedimientodiagnosticoinicial') || mn.isActive('/procedimientodiagnosticofinal') || mn.isActive('/procedimientopersonalsanitario') || mn.isActive('/prioridad') || mn.isActive('/tipoprocedimiento') || mn.isActive('/estado')}">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">
+                        <i class="fa fa-icon-list-alt"></i>Procedimientos<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-header">Codificación</li>
+                        <li ng-class="{ 'active': mn.isActive('/episodioprocedimiento/3/plist')}"><a
+                                href="episodioprocedimiento/3/plist"> <i
+                                    ng-class="mn.meta.episodioprocedimiento.Icon"></i>
+                                {{mn.meta.episodioprocedimiento.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/procedimiento/3/plist')}"><a
+                                href="procedimiento/3/plist"> <i ng-class="mn.meta.procedimiento.Icon"></i>
+                                {{mn.meta.procedimiento.PluralDescription}}</a></li>
+                        <li class="dropdown-header">Datos Específicos para procedimientos</li>
+                        <li ng-class="{ 'active': mn.isActive('/catalogoprocedimientos/3/plist')}"><a
+                                href="catalogoprocedimientos/3/plist"> <i
+                                    ng-class="mn.meta.catalogoprocedimientos.Icon"></i>
+                                {{mn.meta.catalogoprocedimientos.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/procedimientomedico/3/plist')}"><a
+                                href="procedimientomedico/3/plist"> <i ng-class="mn.meta.procedimientomedico.Icon"></i>
+                                {{mn.meta.procedimientomedico.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/procedimientodiagnosticoinicial/3/plist')}"><a
+                                href="procedimientodiagnosticoinicial/3/plist"> <i
+                                    ng-class="mn.meta.procedimientodiagnosticoinicial.Icon"></i>
+                                {{mn.meta.procedimientodiagnosticoinicial.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/procedimientodiagnosticofinal/3/plist')}"><a
+                                href="procedimientodiagnosticofinal/3/plist"> <i
+                                    ng-class="mn.meta.procedimientodiagnosticofinal.Icon"></i>
+                                {{mn.meta.procedimientodiagnosticofinal.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/procedimientopersonalsanitario/3/plist')}"><a
+                                href="procedimientopersonalsanitario/3/plist"> <i
+                                    ng-class="mn.meta.procedimientopersonalsanitario.Icon"></i>
+                                {{mn.meta.procedimientopersonalsanitario.PluralDescription}}</a></li>
+                        <li class="dropdown-header">Datos Auxiliares para procedimientos</li>
+                        <li ng-class="{ 'active': mn.isActive('/prioridad/3/plist')}"><a href="prioridad/3/plist"> <i
+                                    ng-class="mn.meta.prioridad.Icon"></i>
+                                {{mn.meta.prioridad.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/tipoprocedimiento/3/plist')}"><a
+                                href="tipoprocedimiento/3/plist"> <i ng-class="mn.meta.tipoprocedimiento.Icon"></i>
+                                {{mn.meta.tipoprocedimiento.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/estado/3/plist')}"><a href="estado/3/plist"> <i
+                                    ng-class="mn.meta.estado.Icon"></i>
+                                {{mn.meta.estado.PluralDescription}}</a></li>
+                    </ul>
+                </li>
 
                 <!-- Alumno --------------------------------------------->
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 4"
@@ -519,50 +520,50 @@
                 </li>
 
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 4"
-                ng-class="{'active': mn.isActive('/episodioprocedimiento') || mn.isActive('/procedimiento') || mn.isActive('/catalogoprocedimientos') || mn.isActive('/procedimientomedico') || mn.isActive('/procedimientodiagnosticoinicial') || mn.isActive('/procedimientodiagnosticofinal') || mn.isActive('/procedimientopersonalsanitario') || mn.isActive('/prioridad') || mn.isActive('/tipoprocedimiento') || mn.isActive('/estado')}">
-                <a class="dropdown-toggle" data-toggle="dropdown" role="button">
-                    <i class="fa fa-icon-list-alt"></i>Procedimientos<span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                    <li class="dropdown-header">Codificación</li>
-                    <li ng-class="{ 'active': mn.isActive('/episodioprocedimiento/4/plist')}"><a
-                            href="episodioprocedimiento/4/plist"> <i
-                                ng-class="mn.meta.episodioprocedimiento.Icon"></i>
-                            {{mn.meta.episodioprocedimiento.PluralDescription}}</a></li>
-                    <li ng-class="{ 'active': mn.isActive('/procedimiento/4/plist')}"><a
-                            href="procedimiento/4/plist"> <i ng-class="mn.meta.procedimiento.Icon"></i>
-                            {{mn.meta.procedimiento.PluralDescription}}</a></li>
-                    <li class="dropdown-header">Datos Específicos para procedimientos</li>
-                    <li ng-class="{ 'active': mn.isActive('/catalogoprocedimientos/4/plist')}"><a
-                            href="catalogoprocedimientos/4/plist"> <i
-                                ng-class="mn.meta.catalogoprocedimientos.Icon"></i>
-                            {{mn.meta.catalogoprocedimientos.PluralDescription}}</a></li>
-                    <li ng-class="{ 'active': mn.isActive('/procedimientomedico/4/plist')}"><a
-                            href="procedimientomedico/4/plist"> <i ng-class="mn.meta.procedimientomedico.Icon"></i>
-                            {{mn.meta.procedimientomedico.PluralDescription}}</a></li>
-                    <li ng-class="{ 'active': mn.isActive('/procedimientodiagnosticoinicial/4/plist')}"><a
-                            href="procedimientodiagnosticoinicial/4/plist"> <i
-                                ng-class="mn.meta.procedimientodiagnosticoinicial.Icon"></i>
-                            {{mn.meta.procedimientodiagnosticoinicial.PluralDescription}}</a></li>
-                    <li ng-class="{ 'active': mn.isActive('/procedimientodiagnosticofinal/4/plist')}"><a
-                            href="procedimientodiagnosticofinal/4/plist"> <i
-                                ng-class="mn.meta.procedimientodiagnosticofinal.Icon"></i>
-                            {{mn.meta.procedimientodiagnosticofinal.PluralDescription}}</a></li>
-                    <li ng-class="{ 'active': mn.isActive('/procedimientopersonalsanitario/4/plist')}"><a
-                            href="procedimientopersonalsanitario/4/plist"> <i
-                                ng-class="mn.meta.procedimientopersonalsanitario.Icon"></i>
-                            {{mn.meta.procedimientopersonalsanitario.PluralDescription}}</a></li>
-                    <li class="dropdown-header">Datos Auxiliares para procedimientos</li>
-                    <li ng-class="{ 'active': mn.isActive('/prioridad/4/plist')}"><a href="prioridad/4/plist"> <i
-                                ng-class="mn.meta.prioridad.Icon"></i>
-                            {{mn.meta.prioridad.PluralDescription}}</a></li>
-                    <li ng-class="{ 'active': mn.isActive('/tipoprocedimiento/4/plist')}"><a
-                            href="tipoprocedimiento/4/plist"> <i ng-class="mn.meta.tipoprocedimiento.Icon"></i>
-                            {{mn.meta.tipoprocedimiento.PluralDescription}}</a></li>
-                    <li ng-class="{ 'active': mn.isActive('/estado/4/plist')}"><a href="estado/4/plist"> <i
-                                ng-class="mn.meta.estado.Icon"></i>
-                            {{mn.meta.estado.PluralDescription}}</a></li>
-                </ul>
-            </li>
+                    ng-class="{'active': mn.isActive('/episodioprocedimiento') || mn.isActive('/procedimiento') || mn.isActive('/catalogoprocedimientos') || mn.isActive('/procedimientomedico') || mn.isActive('/procedimientodiagnosticoinicial') || mn.isActive('/procedimientodiagnosticofinal') || mn.isActive('/procedimientopersonalsanitario') || mn.isActive('/prioridad') || mn.isActive('/tipoprocedimiento') || mn.isActive('/estado')}">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">
+                        <i class="fa fa-icon-list-alt"></i>Procedimientos<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-header">Codificación</li>
+                        <li ng-class="{ 'active': mn.isActive('/episodioprocedimiento/4/plist')}"><a
+                                href="episodioprocedimiento/4/plist"> <i
+                                    ng-class="mn.meta.episodioprocedimiento.Icon"></i>
+                                {{mn.meta.episodioprocedimiento.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/procedimiento/4/plist')}"><a
+                                href="procedimiento/4/plist"> <i ng-class="mn.meta.procedimiento.Icon"></i>
+                                {{mn.meta.procedimiento.PluralDescription}}</a></li>
+                        <li class="dropdown-header">Datos Específicos para procedimientos</li>
+                        <li ng-class="{ 'active': mn.isActive('/catalogoprocedimientos/4/plist')}"><a
+                                href="catalogoprocedimientos/4/plist"> <i
+                                    ng-class="mn.meta.catalogoprocedimientos.Icon"></i>
+                                {{mn.meta.catalogoprocedimientos.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/procedimientomedico/4/plist')}"><a
+                                href="procedimientomedico/4/plist"> <i ng-class="mn.meta.procedimientomedico.Icon"></i>
+                                {{mn.meta.procedimientomedico.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/procedimientodiagnosticoinicial/4/plist')}"><a
+                                href="procedimientodiagnosticoinicial/4/plist"> <i
+                                    ng-class="mn.meta.procedimientodiagnosticoinicial.Icon"></i>
+                                {{mn.meta.procedimientodiagnosticoinicial.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/procedimientodiagnosticofinal/4/plist')}"><a
+                                href="procedimientodiagnosticofinal/4/plist"> <i
+                                    ng-class="mn.meta.procedimientodiagnosticofinal.Icon"></i>
+                                {{mn.meta.procedimientodiagnosticofinal.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/procedimientopersonalsanitario/4/plist')}"><a
+                                href="procedimientopersonalsanitario/4/plist"> <i
+                                    ng-class="mn.meta.procedimientopersonalsanitario.Icon"></i>
+                                {{mn.meta.procedimientopersonalsanitario.PluralDescription}}</a></li>
+                        <li class="dropdown-header">Datos Auxiliares para procedimientos</li>
+                        <li ng-class="{ 'active': mn.isActive('/prioridad/4/plist')}"><a href="prioridad/4/plist"> <i
+                                    ng-class="mn.meta.prioridad.Icon"></i>
+                                {{mn.meta.prioridad.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/tipoprocedimiento/4/plist')}"><a
+                                href="tipoprocedimiento/4/plist"> <i ng-class="mn.meta.tipoprocedimiento.Icon"></i>
+                                {{mn.meta.tipoprocedimiento.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/estado/4/plist')}"><a href="estado/4/plist"> <i
+                                    ng-class="mn.meta.estado.Icon"></i>
+                                {{mn.meta.estado.PluralDescription}}</a></li>
+                    </ul>
+                </li>
 
                 <!-- Invitado visitante ------------------------------------------- -->
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 5"

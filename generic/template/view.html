@@ -67,6 +67,7 @@
                                             <td>{{oMetap.Description}}</td>
                                             <td ng-if="oMetap.Type == 'Id'"><b>{{bean[oMetap.Name]}}</b></td>
                                             <td ng-if="oMetap.Type == 'Date'">{{bean[oMetap.Name]|fechasinhora}}</td>
+                                            <td ng-if="oMetap.Type == 'Datetime'"><span class="fa fa-calendar">&nbsp;</span>{{bean[oMetap.Name]}}</div>
                                             <td ng-if="oMetap.Type == 'Integer'">{{bean[oMetap.Name]}}</td>
                                             <td ng-if="oMetap.Type == 'Decimal'">{{bean[oMetap.Name]}}</td>
                                             <td ng-if="oMetap.Type == 'String' && oMetap.Clip">{{bean[oMetap.Name]|clipString}}</td>
