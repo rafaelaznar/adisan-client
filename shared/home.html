@@ -67,7 +67,7 @@
                                                 <i class="fa fa-user-md fa-stack-1x fa-inverse"></i>
                                             </div>
                                         </div>
-                                        <div class="text-center" style="margin-top: 20px;font-size: 14px;">Familia sanitaria</div>
+                                        <div class="text-center" style="margin-top: 20px;font-size: 30px;">Familia sanitaria</div>
                                         <p class="text-justify" style="margin-top: 50px;font-size: 20px;">ADISAN es un simulador de gestión administrativa sanitaria. Los profesores de Ciclos Formativos de la familia Sanitaria lo utilizan para qu elos alumnos realizen práctias académicas simulando el entorno laboral.</p>
                                         <p class="text-justify" style="margin-top: 50px;font-size: 20px;">Los profesores que usamos ADISAN para simular el entorno sanitario laboral estamos desarrollando y compartiendo materiales didácticos para explotar el simulador de gestión administrativa sanitaria.</p>
                                     </div>
@@ -78,9 +78,9 @@
                                                 <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
                                             </div>
                                         </div>
-                                        <div class="text-center" style="margin-top: 20px;font-size: 14px;">Familia informática</div>
+                                        <div class="text-center" style="margin-top: 20px;font-size: 30px;">Familia informática</div>
                                         <p class="text-justify" style="margin-top: 50px;font-size: 20px;">ADISAN se ha desarrollado para que los alumnos del Ciclo Formativo de Grado Superior en Desarrollo de Aplicciones Web (DAW) tengan un modelo de referencia para aprender a desarrollar una aplicación web compleja.</p>
-                                        <p class="text-justify" style="margin-top: 50px;font-size: 20px;">La estructura de ADISAN está pensada para que los alumnos del ciclo formativo DAW la utilizen para aprender modificando su código o copiandolo en sus proyectos.</p>
+                                        <p class="text-justify" style="margin-top: 50px;font-size: 20px;">La estructura de ADISAN está pensada para que los alumnos del ciclo formativo DAW la estudien y la utilizen para aprender modificando su código o copiándolo en sus proyectos.</p>
                                     </div>
                                 </div>
                             </div>
@@ -155,13 +155,14 @@
                                         <div class="text-center" style="color:#2f575d;">
                                             <div class="text-center fa-stack fa-5x">
                                                 <i class="fa fa-circle fa-stack-2x"></i>
-                                                <i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i>
+                                                <i class="fa fa-server fa-stack-1x fa-inverse"></i>
                                             </div>
                                         </div>
                                         <div class="text-center" style="margin-top: 20px;font-size: 14px;">En la parte servidora</div>
                                         <p style="font-size: 17px;margin-top: 50px;text-align: justify;">Se ha utilizado un servlet que actúa de controlador para recibir las peticiones y servirlas mediante JSON encaminándolas hacia el nivel inferior de servicios (service). Los servicios normalmente son generados mediante factorías, que emulan la inyección de dependencias sin frameworks adicionales. El nivel service recibe las peticiones, crea la conexión con la base de datos y utiliza uno o varios objetos del nivel inferior de acceso a datos (DAO) para servirlas. Cuando recibe el resultado de la petición lo devuelve en formato JSON al controlador. El nivel DAO además implenta la gestión de perfiles y sus validaciones de seguridad, así como el acceso a la base de datos específico para cada tipo de petición. Ambos sercicios (service y dao) ofrecen un conjunto de implementaciones genéricas mediante Java Reflection para ofrecer servicios comunes que se repiten en la aplicación. La conexión se genera mediante su correspondiente factory desde el nivel servicio y fluye hasta servir la petición. Existen distintas implementaciones para usar cualquiera de los pools de conexiones más conocidos en Java. Los metadatos se guardan en los beans en forma de anotaciones. La base de datos que se ha usado es MySQL. También se ha usado google GSON para las conversiones JSON a bean y maven como gestor de dependencias.</p>
                                     </div>
                                 </div>
+                                <div class="text-center"  style="font-size: 24px;margin-top: 50px;">La aplicación web que soporta ADISAN es un proyecto vivo y está en constante desarrollo y mejora.</div>
                             </div>
                         </div>
 
@@ -202,14 +203,13 @@
                                         <div style="font-size: 17px;margin-top: 10px;text-align: justify;">THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</div>
                                     </div>
                                 </div>
-                                <div style="font-size: 25px;margin-top: 50px;text-align: center;">El código fuente del proyecto, junto a al base de datos y el snapshot de la última versión de despliegue están libremente publicados en:</div>
+                                <div style="font-size: 25px;margin-top: 50px;text-align: center;">El código fuente del proyecto, junto a al base de datos están libremente publicados en:</div>
                                 <div class="row">
                                     <div class="col-md-offset-3 col-md-6" style="font-size: 17px;margin-top: 50px;text-align: left;">
                                         <ul>
                                             <li><a href="https://github.com/rafaelaznar/adisan-client">ADISAN CLIENT: https://github.com/rafaelaznar/adisan-client</a></li>
                                             <li><a href="https://github.com/rafaelaznar/adisan-server">ADISAN SERVER https://github.com/rafaelaznar/adisan-server</a></li>
-                                            <li><a href="https://github.com/rafaelaznar/adisan-database">ADISAN DATABASE: https://github.com/rafaelaznar/adisan-database</a></li>
-                                            <li><a href="https://github.com/rafaelaznar/adisan-deploy">ADISAN DEPLOY SNAPSHOT: https://github.com/rafaelaznar/adisan-deploy</a></li>
+                                            <li><a href="https://github.com/rafaelaznar/adisan-database">ADISAN DATABASE: https://github.com/rafaelaznar/adisan-database</a></li>                                            
                                         </ul>
                                     </div>
                                 </div>
@@ -229,7 +229,7 @@
                                         <p style="font-size: 17px;margin-top: 50px;text-align: justify;">El asesoramiento en materia sanitaria corre a cargo de Isabel Gimeno (igimenos {at} ausiasmarch {dot} net), profesora del CIPFP Ausiàs March, con gran experiencia en Ciclos Formativos en la Failia Sanitaria. Los datos de la aplicación son ficticios y han sido introducidos mediante la colaboración desinteresada de alumnos de segundo curso de DAS.</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <p style="font-size: 17px;margin-top: 50px;text-align: justify;">El autor de la aplicación es Rafael Aznar (rafaaznar {at} gmail {dot} com); profesor-tutor de segundo del Ciclo Formativo de Grado Superior denominado Desarrollo de Aplicaciones Web en el CIPFP Ausiàs March. La aplicación ha sido desarrollada mediante la colaboración desinteresada de alumnos de segundo curso de DAW del CIPFP Ausiàs March.</p>
+                                        <p style="font-size: 17px;margin-top: 50px;text-align: justify;">El autor de la aplicación es Rafael Aznar (rafaaznar {at} gmail {dot} com); profesor-tutor de segundo del Ciclo Formativo de Grado Superior denominado Desarrollo de Aplicaciones Web en el CIPFP Ausiàs March. La aplicación ha sido desarrollada por Rafael Aznar con pequeñas aportaciones de algunos alumnos de segundo curso de DAW del CIPFP Ausiàs March.</p>
                                     </div>
                                 </div>                                
                             </div>
@@ -240,7 +240,7 @@
                                 <div class="text-center" style="color:#2f575d;">
                                     <div class="text-center fa-stack fa-5x">
                                         <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-handshake-o fa-stack-1x fa-inverse"></i>
+                                        <i class="fa fa-handshake fa-stack-1x fa-inverse"></i>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -248,7 +248,7 @@
                                         <p style="font-size: 17px;margin-top: 50px;text-align: justify;">Si eres profesor/a de la família sanitaria puedes participar en el proyecto escribiendo via e-mail a Isabel Gimeno (igimenos {at} ausiasmarch {dot} net). Después de comprobar que eres profesor/a te crearemos una cuenta de docente para que puedas comenzar a utilizar la aplicación con tus alumnos.</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <p style="font-size: 17px;margin-top: 50px;text-align: justify;">Si eres profesor/a de desarrollo web puedes participar en el proyecto escribiendo via e-mail a Rafael Aznar (rafaaznar {at} gmail {dot} com). Desarrollamos de forma estándar mediante fork y pullrequest sobre Github.</p>
+                                        <p style="font-size: 17px;margin-top: 50px;text-align: justify;">Si eres profesor/a de desarrollo web puedes utilizar el proyecto y contactar con el autor via e-mail a Rafael Aznar (rafaaznar {at} gmail {dot} com).</p>
                                     </div>
                                 </div>
                             </div>
