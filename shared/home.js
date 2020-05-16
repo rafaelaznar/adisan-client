@@ -33,20 +33,13 @@
 
 'use strict';
 moduloSistema.controller('HomeController',
-    ['$scope', 'auth', 'meta',
-        function ($scope, auth, meta) {
-            //--
-            if (meta) {
-                if (meta.data) {
-                    if (meta.data.json) {
-                        $scope.metadata = meta.data.json;
-                    }
-                }
-            }
+    ['$scope', 'auth',
+        function ($scope, auth) {
             if (auth) {
                 if (auth.data) {
                     if (auth.data.status == 200) {
-                        $scope.userSession = auth.data.json.data;
+                        $scope.metadata = auth.data.json.meta;
+                        $scope.oSession = auth.data.json;
                     }
                 }
             }

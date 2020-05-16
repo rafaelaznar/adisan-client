@@ -33,15 +33,15 @@
 
 'use strict';
 moduloUsuario.controller('UsuarioNewalumno9Controller',
-    ['$http', '$scope', '$routeParams', '$location', 'constantService', 'serverCallService', '$rootScope', 'toolService', 'auth', 'meta',
-        function ($http, $scope, $routeParams, $location, constantService, serverCallService, $rootScope, toolService, auth, meta) {
+    ['$http', '$scope', '$routeParams', '$location', 'constantService', 'toolService', 'auth',
+        function ($http, $scope, $routeParams, $location, constantService, toolService, auth) {
             $scope.ob = "usuario";
             $scope.op = "new";
             $scope.profile = 1;
 
             //--
-            $scope.metadata = meta.data.json;
-            $scope.userSession = null;
+            $scope.metadata = auth.data.json.meta;
+            $scope.oSession = null;
             //----
 
             $scope.status = null;

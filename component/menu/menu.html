@@ -763,3 +763,11 @@
         </div>
     </div>
 </nav>
+
+<div class="col-lg-12" ng-if="oCrumb">
+    <ol class="breadcrumb">
+        <li ng-repeat="oCrumb in mn.crumbs">
+            <a href="oCrumb">{{oCrumb}}</a>
+        </li>
+    </ol>
+</div>

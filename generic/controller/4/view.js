@@ -33,21 +33,21 @@
 
 'use strict';
 genericModule.controller('viewGenericController4',
-    ['$scope', '$routeParams', 'serverCallService', '$location', 'constantService', 'auth', 'meta',
-        function ($scope, $routeParams, serverCallService, $location, constantService, auth, meta) {
+    ['$scope', '$routeParams', 'serverCallService', '$location', 'constantService', 'auth',
+        function ($scope, $routeParams, serverCallService, $location, constantService, auth) {
             $scope.ob = $routeParams.ob;
             $scope.op = "view";
             $scope.profile = 4;
             //--
-            $scope.metadata = meta.data.json;
-            $scope.userSession = null;
+            $scope.metadata = auth.data.json.meta;
+            $scope.oSession = null;
             if (auth.data.status != 200) {
                 $location.path("/login");
             } else {
-                if (auth.data.json.data.obj_tipousuario.data.id != $scope.profile) {
+                if (auth.data.json.user.data.obj_tipousuario.data.id != $scope.profile) {
                     $location.path("/login");
                 } else {
-                    $scope.userSession = auth.data.json.data;
+                    $scope.oSession = auth.data.json;
                 }
             }
             //----

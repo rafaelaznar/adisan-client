@@ -34,21 +34,21 @@
 'use strict';
 
 genericModule.controller('editXGeneric1Controller',
-    ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', '$route', 'toolService', 'constantService', 'auth', 'meta',
-        function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, $route, toolService, constantService, auth, meta) {
+    ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', '$route', 'toolService', 'constantService', 'auth',
+        function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, $route, toolService, constantService, auth) {
             $scope.ob = $routeParams.ob;
             $scope.op = "edit";
             $scope.profile = 1;
             //--
-            $scope.metadata = meta.data.json;
-            $scope.userSession = null;
+            $scope.metadata = auth.data.json.meta;
+            $scope.oSession = null;
             if (auth.data.status != 200) {
                 $location.path("/login");
             } else {
-                if (auth.data.json.data.obj_tipousuario.data.id != $scope.profile) {
+                if (auth.data.json.user.data.obj_tipousuario.data.id != $scope.profile) {
                     $location.path("/login");
                 } else {
-                    $scope.userSession = auth.data.json.data;
+                    $scope.oSession = auth.data.json;
                 }
             }
             //----

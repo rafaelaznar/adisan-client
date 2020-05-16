@@ -34,24 +34,24 @@
 'use strict';
 
 moduloSistema.controller('PasschangeController',
-    ['$scope', '$routeParams', '$location', 'constantService', 'sessionServerCallService', 'auth', 'meta',
-        function ($scope, $routeParams, $location, constantService, sessionServerCallService, auth, meta) {
+    ['$scope', '$location', 'constantService', 'sessionServerCallService', 'auth',
+        function ($scope, $location, constantService, sessionServerCallService, auth) {
             $scope.title = "Formulario de cambio de password";
             $scope.icon = "fa-key";
 
             //--
-            $scope.metadata = meta.data.json;
+            $scope.metadata = auth.data.json.meta;
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message;
             if ($scope.authStatus != 200) {
               $location.path("/login");
             } else {
               if (
-                auth.data.json.data.obj_tipousuario.data.id > 0 &&
-                auth.data.json.data.obj_tipousuario.data.id <= 5
+                auth.data.json.user.data.obj_tipousuario.data.id > 0 &&
+                auth.data.json.user.data.obj_tipousuario.data.id <= 5
               ) {
                 $scope.isSessionActive = true;
-                $scope.userSession = auth.data.json.data;
+                $scope.oSession = auth.data.json;
               } else {
                 $location.path("/login");
               }

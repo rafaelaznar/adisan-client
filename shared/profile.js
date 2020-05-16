@@ -33,28 +33,27 @@
 
 'use strict';
 
-moduloSistema.controller('ProfileController', ['$scope', '$routeParams', '$location', 'auth', 'meta',
-    function ($scope, $routeParams, $location, auth, meta) {
+moduloSistema.controller('ProfileController', ['$scope', '$location', 'auth',
+    function ($scope, $location, auth) {
         $scope.title = "Perfil de usuario";
         $scope.icon = "fa-user";
 
 
         $scope.authStatus = auth.data.status;
-        $scope.session_info = auth.data.json.data;
+        $scope.session_info = auth.data.json.user.data;
         if ($scope.authStatus != 200) {
           $location.path("/login");
         } else {
           if (
-            auth.data.json.data.obj_tipousuario.data.id > 0 &&
-            auth.data.json.data.obj_tipousuario.data.id <= 5
+            auth.data.json.user.data.obj_tipousuario.data.id > 0 &&
+            auth.data.json.user.data.obj_tipousuario.data.id <= 5
           ) {
             $scope.isSessionActive = true;
-            $scope.userSession = auth.data.json.data;
+            $scope.oSession = auth.data.json;
           } else {
             $location.path("/login");
           }
         }
-
         $scope.back = function () {
             window.history.back();
         };

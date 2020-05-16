@@ -33,22 +33,18 @@
 
 'use strict';
 moduloSistema.controller('LoginController',
-    ['$http', '$scope', '$location', 'constantService', 'sessionServerCallService', 'toolService', 'auth', 'meta',
-        function ($http, $scope, $location, constantService, sessionServerCallService, toolService, auth, meta) {
+    ['$http', '$scope', '$location', 'constantService', 'sessionServerCallService', 'auth',
+        function ($http, $scope, $location, constantService, sessionServerCallService, auth) {
             //$.getScript("https://www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit");             
             $scope.title = "Formulario de entrada al sistema";
             $scope.icon = "fa-file-text-o";
             //--
-            if (meta) {
-                if (meta.data) {
-                    $scope.metadata = meta.data.json;
-                }
-            }
             if (auth) {
                 if (auth.data) {
-                    $scope.userSession = null;
+                    $scope.oSession = null;                    
                     if (auth.data.status == 200) {
-                        $scope.userSession = auth.data.json.data;
+                        $scope.oSession = auth.data.json;
+                        $scope.metadata = auth.data.json.meta;
                     }
                 }
             }

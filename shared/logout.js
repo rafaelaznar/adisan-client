@@ -32,29 +32,32 @@
  */
 
 'use strict';
-moduloSistema.controller('LogoutController', ['$scope', '$location', 'sessionServerCallService', '$route', 'auth', 'meta',
-    function ($scope, $location, sessionServerCallService, $route, auth, meta) {
+moduloSistema.controller('LogoutController', ['$scope', '$location', 'sessionServerCallService', 'auth',
+    function ($scope, $location, sessionServerCallService, auth) {
         $scope.title = "Bye";
         $scope.icon = "fa-sign-out";
 
         //--
-        if (meta) {
-            $scope.metadata = meta.data.json;
-        }
         if (auth) {
-            $scope.authStatus = auth.data.status;
-            $scope.authUsername = auth.data.message;
-            if ($scope.authStatus != 200) {
-                $location.path("/login");
-            } else {
-                if (
-                    auth.data.json.data.obj_tipousuario.data.id > 0 &&
-                    auth.data.json.data.obj_tipousuario.data.id <= 5
-                ) {
-                    $scope.isSessionActive = true;
-                    $scope.session_info = auth.data.json.data;
-                } else {
-                    $location.path("/login");
+            if (auth.data) {
+                if (auth.data.json) {
+                    $scope.metadata = auth.data.json.meta;
+                    $scope.authStatus = auth.data.status;
+                    $scope.authUsername = auth.data.json.user.data.login;
+                    if ($scope.authStatus != 200) {
+                        $location.path("/login");
+                    } else {
+                        if (
+                            auth.data.json.user.data.obj_tipousuario.data.id > 0 &&
+                            auth.data.json.user.data.obj_tipousuario.data.id <= 5
+                        ) {
+                            $scope.isSessionActive = true;
+                            $scope.session_info = auth.data.json.user.data;
+                            
+                        } else {
+                            $location.path("/login");
+                        }
+                    }
                 }
             }
         }
