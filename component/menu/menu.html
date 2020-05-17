@@ -764,10 +764,11 @@
     </div>
 </nav>
 
-<div class="col-lg-12" ng-if="oCrumb">
+<div class="col-lg-12" ng-if="mn.crumbs">
     <ol class="breadcrumb">
-        <li ng-repeat="oCrumb in mn.crumbs">
-            <a href="oCrumb">{{oCrumb}}</a>
+        <li>HISTORIAL DE VISITAS </li>
+        <li ng-repeat="scrumb in mn.crumbs track by $index">            
+            <a href="{{scrumb}}">{{$index}} - {{mn.getob(scrumb)}}</a>
         </li>
     </ol>
 </div>

@@ -55,8 +55,19 @@ moduloServicios.factory('sessionServerCallService',
                 logout: function () {
                     return $http.get(constantService.getAppUrl() + '?ob=usuario&op=logout', 'GET', '');
                 },
-                checkSession: function () {
-                    return $http.get(constantService.getAppUrl() + '?ob=usuario&op=getsessionstatus', 'GET', '');
+                checkSession: function (crumb) {
+                    if (crumb) {
+                        var surl = crumb.ob + '/1/' + crumb.xob + '/plist/' + crumb.id + '/';
+                        if (crumb.page) {
+                            surl += crumb.ob + '/';
+                        }
+                        if (crumb.rpp) {
+                            surl += crumb.rpp + '/';
+                        }
+                        return $http.get(constantService.getAppUrl() + '?ob=usuario&op=getsessionstatus&br=' + encodeURIComponent(surl), 'GET', '');
+                    } else {
+                        return $http.get(constantService.getAppUrl() + '?ob=usuario&op=getsessionstatus', 'GET', '');
+                    }
                 }
             }
         }

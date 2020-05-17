@@ -20,7 +20,9 @@ function menuCtrl($location, serverCallService) {
             self.isSessionActive = false;
         }
     };
-
+    self.getob = function (str) {
+        return str.substr(0, str.indexOf('/'));
+    }
     self.isActive = function (viewLocation) {
         //return viewLocation === $location.path();
         //console.log($location.path() , viewLocation , $location.path().startsWith(viewLocation))

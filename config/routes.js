@@ -46,28 +46,29 @@ adisan.config(['$routeProvider', function ($routeProvider) {
     //--
     //-- generic 1
     //--
-    $routeProvider.when('/:ob/1/plist/:page?/:rpp?', {
-        templateUrl: 'generic/template/plist.html',
-        controller: 'plistGenericController1',
-        resolve: {
-            auth: function (sessionServerCallService, $route) {
-                return sessionServerCallService.checkSession($route.current).then(
-                    function (response) {
-                        return response;
-                    },
-                    function (error) {
-                        return error;
-                    });
-            }
-        }
-    });
+    $routeProvider.when('/:ob/1/plist/:page?/:rpp?', { templateUrl: 'generic/template/plist.html', controller: 'plistGenericController1', resolve: { auth: function (sessionServerCallService) { return sessionServerCallService.checkSession().then(function (response) { return response; }, function (error) { return error; }); } } });
     $routeProvider.when('/:ob/1/view/:id', { templateUrl: 'generic/template/view.html', controller: 'viewGenericController1', resolve: { auth: function (sessionServerCallService) { return sessionServerCallService.checkSession().then(function (response) { return response; }, function (error) { return error; }); } } });
     $routeProvider.when('/:ob/1/new/:id?', { templateUrl: 'generic/template/newedit.html', controller: 'newGenericController1', resolve: { auth: function (sessionServerCallService) { return sessionServerCallService.checkSession().then(function (response) { return response; }, function (error) { return error; }); } } });
     $routeProvider.when('/:ob/1/edit/:id', { templateUrl: 'generic/template/newedit.html', controller: 'editGenericController1', resolve: { auth: function (sessionServerCallService) { return sessionServerCallService.checkSession().then(function (response) { return response; }, function (error) { return error; }); } } });
     $routeProvider.when('/:ob/1/remove/:id', { templateUrl: 'generic/template/remove.html', controller: 'removeGenericController1', resolve: { auth: function (sessionServerCallService) { return sessionServerCallService.checkSession().then(function (response) { return response; }, function (error) { return error; }); } } });
     $routeProvider.when('/:ob/1/statistics/:id', { templateUrl: 'generic/template/statistics.html', controller: 'statisticsGenericController1', resolve: { auth: function (sessionServerCallService) { return sessionServerCallService.checkSession().then(function (response) { return response; }, function (error) { return error; }); } } });
     //--
-    $routeProvider.when('/:ob/1/:xob/plist/:id/:page?/:rpp?', { templateUrl: 'generic/template/plist.html', controller: 'plistXGeneric1Controller', resolve: { auth: function (sessionServerCallService) { return sessionServerCallService.checkSession().then(function (response) { return response; }, function (error) { return error; }); } } });
+    $routeProvider.when('/:ob/1/:xob/plist/:id/:page?/:rpp?', {
+        templateUrl: 'generic/template/plist.html',
+        controller: 'plistXGeneric1Controller',
+        resolve: {
+            auth: function (sessionServerCallService, $route) {
+                return sessionServerCallService.checkSession($route.current.params).then(
+                    function (response) {
+                        return response;
+                    },
+                    function (error) {
+                        return error;
+                    }
+                );
+            }
+        }
+    });
     $routeProvider.when('/:ob/1/:xob/new/:id', { templateUrl: 'generic/template/newedit.html', controller: 'newXGeneric1Controller', resolve: { auth: function (sessionServerCallService) { return sessionServerCallService.checkSession().then(function (response) { return response; }, function (error) { return error; }); } } });
     $routeProvider.when('/:ob/1/:xob/edit/:id/:xid', { templateUrl: 'generic/template/newedit.html', controller: 'editXGeneric1Controller', resolve: { auth: function (sessionServerCallService) { return sessionServerCallService.checkSession().then(function (response) { return response; }, function (error) { return error; }); } } });
     //--

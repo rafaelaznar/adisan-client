@@ -38,17 +38,26 @@ genericModule.controller('plistXGeneric1Controller',
             $scope.ob = $routeParams.ob;
             $scope.op = "plist";
             $scope.profile = 1;
-            //--
-            $scope.metadata = auth.data.json.meta;
+            //--            
             $scope.oSession = null;
-            if (auth.data.status != 200) {
-                $location.path("/login");
-            } else {
-                if (auth.data.json.user.data.obj_tipousuario.data.id != $scope.profile) {
-                    $location.path("/login");
+            $scope.metadata = null;
+            if (auth) {
+                if (auth.data) {
+                    if (auth.data.status == 200) {
+                        if (auth.data.json.user.data.obj_tipousuario.data.id == $scope.profile) {
+                            $scope.metadata = auth.data.json.meta;
+                            $scope.oSession = auth.data.json;
+                        } else {
+                            $location.path("/login");
+                        }
+                    } else {
+                        $location.path("/login");
+                    }
                 } else {
-                    $scope.oSession = auth.data.json;
+                    $location.path("/login");
                 }
+            } else {
+                $location.path("/login");
             }
             //----
             $scope.xob = $routeParams.xob;

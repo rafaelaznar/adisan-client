@@ -40,16 +40,25 @@ genericModule.controller('newXGeneric1Controller',
             $scope.op = "new";
             $scope.profile = 1;
             //--
-            $scope.metadata = auth.data.json.meta;
             $scope.oSession = null;
-            if (auth.data.status != 200) {
-                $location.path("/login");
-            } else {
-                if (auth.data.json.user.data.obj_tipousuario.data.id != $scope.profile) {
-                    $location.path("/login");
+            $scope.metadata = null;
+            if (auth) {
+                if (auth.data) {
+                    if (auth.data.status == 200) {
+                        if (auth.data.json.user.data.obj_tipousuario.data.id == $scope.profile) {
+                            $scope.metadata = auth.data.json.meta;
+                            $scope.oSession = auth.data.json;
+                        } else {
+                            $location.path("/login");
+                        }
+                    } else {
+                        $location.path("/login");
+                    }
                 } else {
-                    $scope.oSession = auth.data.json;
+                    $location.path("/login");
                 }
+            } else {
+                $location.path("/login");
             }
             //---
             $scope.xob = $routeParams.xob;
@@ -70,56 +79,61 @@ genericModule.controller('newXGeneric1Controller',
                             $scope.status = "Error: " + response.data.json;
                         }
                     }
+                    //--
+                    serverCallService.getMeta($scope.ob).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                $scope.status = null;
+                                //--For every foreign key create obj inside bean tobe filled...
+                                $scope.bean = {};
+                                response.data.json.metaProperties.forEach(function (property) {
+                                    if (property.Type == 'ForeignObject') {
+                                        $scope.bean[property.Name] = {};
+                                        $scope.bean[property.Name].data = {};
+                                        if (property.Name == 'obj_' + $scope.xob) {
+                                            $scope.bean[property.Name].data.id = $scope.xid;
+                                        } else {
+                                            $scope.bean[property.Name].data.id = null;
+                                        }
+                                        if ($scope.xob == "subepisodio" && property.Name == 'obj_episodio') {  //específico
+                                            $scope.bean[property.Name].data.id = $scope.xid;
+                                        }
+                                    }
+                                    if (property.DefaultValue == "today") {
+                                        $scope.bean[property.Name] = moment().format('DD/MM/YYYY');
+                                    }
+                                });
+                                //--
+                                $scope.metao = response.data.json.metaObject;
+                                $scope.metap = response.data.json.metaProperties;
+                                //------------------ESPECIFICO-------------------------------------
+                                if ($scope.ob == 'episodio') {
+                                    if ($scope.linkedbean.data.obj_usuario) {
+                                        $scope.bean['obj_usuario'].data.id = $scope.linkedbean.data.obj_usuario.data.id;
+                                    }
+                                    $scope.bean['obj_paciente'].data.id = $scope.linkedbean.data.id;
+                                }
+                                if ($scope.ob == 'subepisodio') {
+                                    $scope.bean['obj_episodio'].data.id = $scope.linkedbean.data.id;
+                                    $scope.bean['obj_usuario'].data.id = $scope.linkedbean.data.obj_usuario.data.id;
+                                    $scope.bean['obj_paciente'].data.id = $scope.linkedbean.data.obj_paciente.data.id;
+                                }
+                                //--
+                            } else {
+                                $scope.status = "Error: " + response.data.json;
+                            }
+                        } else {
+                            $scope.status = "Error en la recepción de datos del servidor";
+                        }
+                    }).catch(function (data) {
+                        $scope.status = "Error en la recepción de datos del servidor";
+                    });
+                    //--
                 }).catch(function (data) {
                 });
             }
             ;
-            serverCallService.getMeta($scope.ob).then(function (response) {
-                if (response.status == 200) {
-                    if (response.data.status == 200) {
-                        $scope.status = null;
-                        //--For every foreign key create obj inside bean tobe filled...
-                        $scope.bean = {};
-                        response.data.json.metaProperties.forEach(function (property) {
-                            if (property.Type == 'ForeignObject') {
-                                $scope.bean[property.Name] = {};
-                                $scope.bean[property.Name].data = {};
-                                if (property.Name == 'obj_' + $scope.xob) {
-                                    $scope.bean[property.Name].data.id = $scope.xid;
-                                } else {
-                                    $scope.bean[property.Name].data.id = null;
-                                }
-                                if ($scope.xob == "subepisodio" && property.Name == 'obj_episodio') {  //específico
-                                    $scope.bean[property.Name].data.id = $scope.xid;
-                                }
-                            }
-                            if (property.DefaultValue == "today") {
-                                $scope.bean[property.Name] = moment().format('DD/MM/YYYY');
-                            }
-                        });
-                        //--
-                        $scope.metao = response.data.json.metaObject;
-                        $scope.metap = response.data.json.metaProperties;
-                        //------------------ESPECIFICO-------------------------------------
-                        if ($scope.ob == 'episodio') {        
-                            $scope.bean['obj_usuario'].data.id = $scope.linkedbean.data.obj_usuario.data.id;
-                            $scope.bean['obj_paciente'].data.id = $scope.linkedbean.data.id;
-                        }
-                        if ($scope.ob == 'subepisodio') {        
-                            $scope.bean['obj_episodio'].data.id = $scope.linkedbean.data.id;
-                            $scope.bean['obj_usuario'].data.id = $scope.linkedbean.data.obj_usuario.data.id;
-                            $scope.bean['obj_paciente'].data.id = $scope.linkedbean.data.obj_paciente.data.id;
-                        }
-                        //--
-                    } else {
-                        $scope.status = "Error: " + response.data.json;
-                    }
-                } else {
-                    $scope.status = "Error en la recepción de datos del servidor";
-                }
-            }).catch(function (data) {
-                $scope.status = "Error en la recepción de datos del servidor";
-            });
+
             //--
             $scope.save = function () {
                 var jsonToSend = { json: JSON.stringify(toolService.array_identificarArray($scope.bean)) };
@@ -135,6 +149,9 @@ genericModule.controller('newXGeneric1Controller',
                     } else {
                         $scope.status = "Error en la recepción de datos del servidor";
                     }
+                    //--
+
+                    //--
                 }).catch(function (data) {
                     $scope.status = "Error en la recepción de datos del servidor";
                 });
