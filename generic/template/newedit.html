@@ -156,6 +156,33 @@
                                     </div>
                                 </div>
 
+                                <!-- datetime ------------------------------------------------>
+                                <div ng-if="oMetap.Type == 'Datetime'" class="form-group" id="{{oMetap.Name}}-group"
+                                     ng-class="{'has-error':(outerForm[oMetap.Name].$error.valid && !outerForm.$pristine) ||
+                                                              (outerForm[oMetap.Name].$error.required && !outerForm.$pristine) ||
+                                                              outerForm[oMetap.Name].$error.valid}">
+                                    <label class="control-label col-sm-2" for="{{oMetap.Name}}">
+                                        <span ng-if="oMetap.IsRequired">*</span>
+                                        {{oMetap.LongName}}
+                                    </label>
+                                    <div class="control col-md-{{oMetap.Width}}">
+                                        <date-time-picker
+                                            name="oMetap.Name"
+                                            required="oMetap.IsRequired"
+                                            model="bean[oMetap.Name]"
+                                            form="outerForm">
+                                        </date-picker>
+                                        <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.required">El campo es obligatorio</span>
+                                        <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.required && !outerForm[oMetap.Name].$valid">El campo no tiene formato adecuado: Introduzca {{oMetap.RegexHelp}}</span>
+                                    </div>
+                                    <div class="control col-md-1 alert alert-success" ng-if="debugging == 2">
+                                        pristine:{{outerForm[oMetap.Name].$pristine}}<br>
+                                        required:{{outerForm[oMetap.Name].$error.required}}<br>
+                                        valid:{{outerForm[oMetap.Name].$valid}}<br>
+                                    </div>
+                                </div>
+
+
                                 <!-- boolean ------------------------------------------------>
                                 <div ng-if="oMetap.Type == 'Boolean'" class="form-group" id="{{oMetap.Name}}-group"
                                      ng-class="{'has-error': (outerForm[oMetap.Name].$error.required || outerForm[oMetap.Name].$error.valid) && !outerForm.$pristine}">

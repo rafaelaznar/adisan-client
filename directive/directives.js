@@ -147,7 +147,7 @@ moduloDirectivas
             }
         })
 
-        .directive("datetimepicker", function () {
+        .directive("jqdatetimepicker", function () {
             return {
                 restrict: "A",
                 require: "ngModel",
