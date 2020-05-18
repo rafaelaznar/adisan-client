@@ -99,9 +99,12 @@ genericModule.controller('newXGeneric1Controller',
                                             $scope.bean[property.Name].data.id = $scope.xid;
                                         }
                                     }
-                                    if (property.DefaultValue == "today") {
+                                    if (property.Type == 'Date' && property.DefaultValue == "now") {
                                         $scope.bean[property.Name] = moment().format('DD/MM/YYYY');
                                     }
+                                    if (property.Type == 'Datetime' && property.DefaultValue == "now") {
+                                        $scope.bean[property.Name] = moment().format('DD/MM/YYYY HH:MM');
+                                    }                                    
                                 });
                                 //--
                                 $scope.metao = response.data.json.metaObject;

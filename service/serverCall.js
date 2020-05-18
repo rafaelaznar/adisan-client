@@ -59,6 +59,21 @@ moduloServicios.factory('serverCallService',
                             }
                         }
                     },
+                    getPList: function (strObject, rpp, page, filter, order) {
+                        if (filter) {
+                            if (order) {
+                                return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=getplist&np=' + page + "&rpp=" + rpp + "&filter=" + filter + "&order=" + order, 'GET', '');
+                            } else {
+                                return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=getplist&np=' + page + "&rpp=" + rpp + "&filter=" + filter, 'GET', '');
+                            }
+                        } else {
+                            if (order) {
+                                return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=getplist&np=' + page + "&rpp=" + rpp + "&order=" + order, 'GET', '');
+                            } else {
+                                return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=getplist&np=' + page + "&rpp=" + rpp, 'GET', '');
+                            }
+                        }
+                    },                    
                     getOne: function (strClass, id) {
                         return $http.get(constantService.getAppUrl() + '?ob=' + strClass + '&op=get&id=' + id, 'GET', '');
                     },
@@ -109,6 +124,22 @@ moduloServicios.factory('serverCallService',
                             return $http.get(base + '&filter=' + filter, 'GET', '');
                         } else {
                             return $http.get(base, 'GET', '');
+                        }
+                    },
+                    getPListX: function (strObject, strObjectForeign, idForeign, rpp, page, filter, order) {
+                        var base = constantService.getAppUrl() + '?ob=' + strObject + '&ob_foreign=' + strObjectForeign + '&id_foreign=' + idForeign + '&op=getplistx';
+                        if (filter) {
+                            if (order) {
+                                return $http.get(base + '&np=' + page + "&rpp=" + rpp + "&filter=" + filter + "&order=" + order, 'GET', '');
+                            } else {
+                                return $http.get(base + '&np=' + page + "&rpp=" + rpp + "&filter=" + filter, 'GET', '');
+                            }
+                        } else {
+                            if (order) {
+                                return $http.get(base + '&np=' + page + "&rpp=" + rpp + "&order=" + order, 'GET', '');
+                            } else {
+                                return $http.get(base + '&np=' + page + "&rpp=" + rpp, 'GET', '');
+                            }
                         }
                     },
                     getMetaPromise: function () {

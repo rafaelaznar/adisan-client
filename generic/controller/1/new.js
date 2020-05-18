@@ -77,7 +77,7 @@ genericModule.controller('newGenericController1',
                                 $scope.bean[property.Name].data = {};
                                 $scope.bean[property.Name].data.id = null;
                             }
-                            if (property.DefaultValue == "today") {
+                            if (property.Type == 'Date' && property.DefaultValue == "today") {
                                 $scope.bean[property.Name] = moment().format('DD/MM/YYYY');
                             }
                         });

@@ -78,50 +78,48 @@ genericModule.controller('plistXGeneric5Controller',
             function getDataFromServer() {
                 if ($scope.xob && $scope.xid) {
                     $scope.linkedbean = null;
-                    serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
-                        if (response.status == 200) {
-                            if (response.data.status == 200) {
-                                $scope.linkedbean = response.data.json;
-                                $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
-                            } else {
-                                $scope.status = "Error: " + response.data.json;
+                    serverCallService.getOne($scope.xob, $scope.xid)
+                        .then(
+                            function (response) {
+                                if (response.status == 200) {
+                                    if (response.data.status == 200) {
+                                        $scope.linkedbean = response.data.json;
+                                        $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
+                                    } else {
+                                        $scope.status = "Error: " + response.data.json;
+                                    }
+                                }
                             }
-                        }
-                    }).catch(function (data) {
-                    });
-                }
-                ;
-                serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
-                    if (response.status == 200) {
-                        if (response.data.status == 200) {
-                            $scope.registers = response.data.json;
-                            $scope.pages = toolService.calculatePages($scope.rpp, $scope.registers);
-                            if ($scope.numpage > $scope.pages) {
-                                $scope.numpage = $scope.pages;
+                        ).catch(function (data) {
+                            $scope.breadcrumbs = "Error en la recepción de datos del servidor";
+                        });
+                    serverCallService.getPListX($scope.ob, $scope.xob, $scope.xid, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order)
+                        .then(
+                            function (response) {
+                                if (response.status == 200) {
+                                    if (response.data.status == 200) {
+                                        $scope.registers = response.data.json.count;
+                                        $scope.pages = toolService.calculatePages($scope.rpp, $scope.registers);
+                                        if ($scope.numpage > $scope.pages) {
+                                            $scope.numpage = $scope.pages;
+                                        }
+                                        $scope.page = response.data.json.page.data;
+                                        $scope.metao = response.data.json.page.metaObject;
+                                        $scope.metap = response.data.json.page.metaProperties;
+                                        toolService.hideField($scope.metap, "obj_" + $scope.xob);
+                                    } else {
+                                        $scope.status = "Error: " + response.data.json;
+                                    }
+                                } else {
+                                    $scope.status = "Error en la recepción de datos del servidor";
+                                }
                             }
-                            return serverCallService.getPageX($scope.ob, $scope.xob, $scope.xid, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
-                        } else {
-                            $scope.status = "Error: " + response.data.json;
-                        }
-                    } else {
-                        $scope.status = "Error en la recepción de datos del servidor";
-                    }
-                }).then(function (response) {
-                    if (response.status == 200) {
-                        if (response.data.status == 200) {
-                            $scope.page = response.data.json.data;
-                            $scope.metao = response.data.json.metaObject;
-                            $scope.metap = response.data.json.metaProperties;
-                            toolService.hideField($scope.metap, "obj_" + $scope.xob);
-                        } else {
-                            $scope.status = "Error: " + response.data.json;
-                        }
-                    } else {
-                        $scope.status = "Error en la recepción de datos del servidor";
-                    }
-                }).catch(function (data) {
-                    $scope.status = "Error en la recepción de datos del servidor";
-                });
+                        ).catch(function (data) {
+                            $scope.status = "Error en la recepción de datos del servidor";
+                        });
+                } else {
+                    $scope.status = "Error en los parámetros de la acción";
+                };
             }
             //---
             $scope.doorder = function (orderField, ascDesc) {

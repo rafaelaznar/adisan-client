@@ -83,9 +83,12 @@ genericModule.controller('newGenericController4',
                                     $scope.metap = toolService.deleteForeignKey($scope.metap, property.Name);
                                 }
                             }
-                            if (property.DefaultValue == "today") {
+                            if (property.Type == 'Date' && property.DefaultValue == "now") {
                                 $scope.bean[property.Name] = moment().format('DD/MM/YYYY');
                             }
+                            if (property.Type == 'Datetime' && property.DefaultValue == "now") {
+                                $scope.bean[property.Name] = moment().format('DD/MM/YYYY HH:MM');
+                            }  
                         });
                         //------------------ESPECIFICO-------------------------------------                                       
                         if ($scope.ob == 'subepisodio') {

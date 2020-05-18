@@ -55,16 +55,27 @@ moduloServicios.factory('sessionServerCallService',
                 logout: function () {
                     return $http.get(constantService.getAppUrl() + '?ob=usuario&op=logout', 'GET', '');
                 },
-                checkSession: function (crumb) {
+                checkSession: function (crumb, level) {
                     if (crumb) {
-                        var surl = crumb.ob + '/1/' + crumb.xob + '/plist/' + crumb.id + '/';
-                        if (crumb.page) {
-                            surl += crumb.ob + '/';
+                        if (crumb.xob) {
+                            var surl = crumb.ob + '/' + level + '/' + crumb.xob + '/plist/' + crumb.id + '/';
+                            if (crumb.page) {
+                                surl += crumb.page + '/';
+                            }
+                            if (crumb.rpp) {
+                                surl += crumb.rpp + '/';
+                            }
+                            return $http.get(constantService.getAppUrl() + '?ob=usuario&op=getsessionstatus&br=' + encodeURIComponent(surl), 'GET', '');
+                        } else {
+                            var surl = crumb.ob + '/' + level + '/plist/';
+                            if (crumb.page) {
+                                surl += crumb.page + '/';
+                            }
+                            if (crumb.rpp) {
+                                surl += crumb.rpp + '/';
+                            }
+                            return $http.get(constantService.getAppUrl() + '?ob=usuario&op=getsessionstatus&br=' + encodeURIComponent(surl), 'GET', '');
                         }
-                        if (crumb.rpp) {
-                            surl += crumb.rpp + '/';
-                        }
-                        return $http.get(constantService.getAppUrl() + '?ob=usuario&op=getsessionstatus&br=' + encodeURIComponent(surl), 'GET', '');
                     } else {
                         return $http.get(constantService.getAppUrl() + '?ob=usuario&op=getsessionstatus', 'GET', '');
                     }
