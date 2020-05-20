@@ -178,6 +178,8 @@ THE SOFTWARE.
                                     class="text-right">
                                     <div ng-if="oMetap.IsVisible && oMetap.Type == 'Date'" class="text-center"><span
                                             class="fa fa-calendar">&nbsp;</span>{{oBean[oMetap.Name]}}</div>
+                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'Datetime'" class="text-center"><span
+                                                class="fa fa-calendar">&nbsp;</span>{{oBean[oMetap.Name]}}</div>                                            
                                     <div ng-if="oMetap.IsVisible && oMetap.Type == 'Integer'" class="text-center">
                                         {{oBean[oMetap.Name]}}</div>
                                     <div ng-if="oMetap.IsVisible && oMetap.Type == 'Decimal'" class="text-center">
@@ -186,8 +188,6 @@ THE SOFTWARE.
                                         class="text-left">{{oBean[oMetap.Name]|clipString}}</div>
                                     <div ng-if="oMetap.IsVisible && oMetap.Type == 'String' && !oMetap.Clip"
                                         class="text-left">{{oBean[oMetap.Name]}}</div>
-                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'Calculated'" class="text-left">
-                                        {{oBean[oMetap.Name]|clipString}}</div>
                                     <div ng-if="oMetap.IsVisible && oMetap.Type == 'Calculated'" class="text-left">
                                         {{oBean[oMetap.Name]|clipString}}</div>
                                     <div ng-if="oMetap.IsVisible && oMetap.Type == 'Boolean'" class="text-center"

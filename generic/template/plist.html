@@ -184,7 +184,7 @@
                                             <thead plistheader></thead>
                                             <tbody>
                                                 <tr ng-repeat="oBean in page| filter:searchText" >
-                                                    <td ng-repeat="oMetap in metap" ng-if="oMetap.IsVisible && oMetap.Type == 'Id'"  class="text-right col-md-1">
+                                                    <td ng-repeat="oMetap in metap" ng-if="oMetap.IsVisible && oMetap.Type == 'Id'"  class="text-right">
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'Id'"><b>{{oBean[oMetap.Name]}}</b></div>
                                                     </td>
                                                     <td ng-init="setShowRemove(true)" ng-repeat="oMetap in metap" ng-if="oMetap.IsVisible && oMetap.Type != 'Id'"  class="text-right">
