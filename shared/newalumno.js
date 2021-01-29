@@ -40,7 +40,7 @@ moduloUsuario.controller('UsuarioNewalumno9Controller',
             $scope.profile = 1;
 
             //--
-            $scope.metadata = auth.data.json.meta;
+            $scope.metadata = auth.data.json; //$scope.metadata = auth.data.json.meta;
             $scope.oSession = null;
             //----
 
